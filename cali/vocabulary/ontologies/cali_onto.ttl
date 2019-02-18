@@ -1,0 +1,17 @@
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix odrl:  <http://www.w3.org/ns/odrl/2/Permission> .
+@prefix cali:  <http://cali.priloo.univ-nantes.fr/ontology#>
+
+cali:DeonticStatus  a  owl:Class , rdfs:Class  ;
+          rdfs:label           "A deontic status" ;
+          rdfs:comment         "The deontic status of an action (e.g., Permitted, Obliged, Prohibited, Recommended, etc.)" ;
+          rdfs:subClassOf   owl:Thing ;
+          rdfs:isDefinedBy     cali: .
+
+cali:lessRestrictiveThan  a  owl:DatatypeProperty , rdf:Property ;
+          rdfs:label        "less restrictive than" ;
+          rdfs:comment      "An other thing that is less restrictive" ;
+          rdfs:domain       owl:Thing ;
+          rdfs:range        owl:Thing .
