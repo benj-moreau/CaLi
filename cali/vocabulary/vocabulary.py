@@ -5,9 +5,6 @@ class Vocabulary(object):
     """A Vocabulary.
 
     A vocabulary is a set of actions.
-    The constructor accepts one argument,
-    the 'rdf_vocabulary_path' that is the path to the
-    rdf vocabulary containing the actions.
     """
 
     def __init__(self, rdf_vocabulary_path):
