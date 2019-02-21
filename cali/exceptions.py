@@ -8,5 +8,19 @@ class MissingAction(Exception):
 class MissingDeonticStatus(Exception):
 
     def __str__(self):
-        """Raise if a deontic status in the license is not in the deontic lattice"""
+        """Raise if a deontic status in the license is not in the deontic lattice."""
         return ("All deontic status of a license should be in the deontic lattice")
+
+
+class BadVocabulary(Exception):
+
+    def __str__(self):
+        """Raise if the vocabulary is not the one used in the license."""
+        return ("The vocabulary/action is not the one used to instanciate the license")
+
+
+class MissingLicense(Exception):
+
+    def __str__(self):
+        """Raise if the license is not in the rdf graph."""
+        return ("The IRI of the license is missing in the rdf graph")

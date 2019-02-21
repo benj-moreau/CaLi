@@ -1,6 +1,5 @@
-from rdflib import Graph, URIRef
-
 import cali.exceptions as exceptions
+from cali.vocabulary.ontologies.cali_onto import Undefined
 
 
 class License(object):
@@ -20,16 +19,43 @@ class License(object):
          - the 'rdf_graph' (rdflib.Graph) that is
         the rdf graph containing the license,
          - the 'iri' (rdflib.URIRef) that is the IRI identifying
-        the license in the rdf file'rdf_license_path'
+        the license in the rdf file'rdf_graph'
 
         creates an attribute 'iri' and 'deontic states' containing
         all deontic states of the actions of the vocabulary.
         """
-        self.iri = iri
-        self.deontic_states = []
+        if (iri, None, None) in rdf_graph:
+            self.iri = iri
+            self.deontic_states = []
+        else:
+            raise(exceptions.MissingLicense)
+
+    def get_state(self, vocabulary, action):
+        """
+        Return the state of the action in the current license.
+
+        Vocabulary parameter should be the same as the one used to instanciated
+        the license.
+        """
+        if len(vocabulary.actions) != len(self.deontic_states):
+            raise exceptions.BadVocabulary()
+        for index, voc_action in enumerate(vocabulary.actions):
+            if voc_action == action:
+                return self.deontic_states[index]
+        raise exceptions.BadVocabulary()
+
+    def get_action(self, vocabulary, state):
+        """Return a list of actions from the current license that are in the state."""
+        if len(vocabulary.actions) != len(self.deontic_states):
+            raise exceptions.BadVocabulary()
+        actions_to_return = []
+        for action, action_state in zip(vocabulary.actions, self.deontic_states):
+            if action_state == state:
+                actions_to_return.append(action)
+        return actions_to_return
 
 
-class ODRLLicense(object):
+class ODRLLicense(License):
     """An ODRL License.
 
     An ORDL license contains an IRI and
@@ -42,21 +68,20 @@ class ODRLLicense(object):
         ODRL License Constructor.
 
         accepts three arguments,
-        the odrl 'vocabulary', the 'rdf_license_path' that is
+        the odrl 'vocabulary', the 'rdf_graph' (rdflib.Graph) that is
         the rdf file path containing the odrl license and the 'iri'
         (rdflib.URIRef) identifying the license in the rdf file.
 
         creates an attribute 'iri' and 'deontic states' containing
         all deontic states of the actions of the vocabulary.
         """
-        # TODO: HANDLE DEONTIC LATTICE
-        License.__init__(self, iri)
+        License.__init__(self, vocabulary, deontic_lattice, rdf_graph, iri)
         for action in vocabulary.actions:
             try:
                 deontic_status = rdf_graph.predicates(subject=iri, object=action).next()
                 self.deontic_states.append(deontic_status)
             except StopIteration:
-                if 'undefined' not in deontic_lattice:
+                if Undefined not in deontic_lattice.moreRestrictiveThan:
                     raise exceptions.MissingAction()
                 else:
-                    self.deontic_states.append(URIRef('UNDEFINED'))
+                    self.deontic_states.append(Undefined)

@@ -1,12 +1,11 @@
 from unittest import TestCase
 
 from cali.deontic_lattice import DeonticLattice
-
 from cali.vocabulary.ontologies.cali_onto import Undefined, Permission, Prohibition, Duty
 
 
 class testDeonticLattice(TestCase):
-    """Test if DeonticLattice object is well instanciated and ."""
+    """Test for DeonticLattice object."""
 
     def test_odrl_vocabulary(self):
         """Test if ODRL vocabulary is well instanciated."""
@@ -21,6 +20,7 @@ class testDeonticLattice(TestCase):
         self.assertItemsEqual([Duty], DL2.moreRestrictiveThan[Duty])
 
     def test_restrictiveness(self):
+        """Test restrictiveness function of the deontic lattice."""
         DL1 = DeonticLattice('cali/examples/deontic_lattices/DL1.ttl', 'ttl')
         self.assertTrue(DL1.is_less_restrictive(Undefined, Permission))
         self.assertTrue(DL1.is_less_restrictive(Undefined, Duty))
