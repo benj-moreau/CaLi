@@ -24,3 +24,17 @@ class MissingLicense(Exception):
     def __str__(self):
         """Raise if the license is not in the rdf graph."""
         return ("The IRI of the license is missing in the rdf graph")
+
+
+class NotALicenseConstraint(ValueError):
+
+    def __str__(self):
+        """Raise if the constraint function is not a license constraint."""
+        return ("Constraint is not a valid license constraint function")
+
+
+class NotACompatibilityConstraint(ValueError):
+
+    def __str__(self):
+        """Raise if the constraint function is not a compatibility constraint."""
+        return ("Constraint is not a valid license compatibility function")

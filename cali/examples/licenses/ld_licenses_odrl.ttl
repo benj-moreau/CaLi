@@ -175,7 +175,7 @@
 <http://cali.priloo.univ-nantes.fr/api/ld/licenses/65927752496731336041529177465061342556133156838395276> a odrl:Policy ;
     rdfs:label "MIT" ;
     l4lod:licensingTerms <https://opensource.org/licenses/MIT> ;
-    odrl:duty cc:Notice ;
+    odrl:Duty cc:Notice ;
     odrl:Permission cc:CommericalUse,
         cc:DerivativeWorks,
         cc:Distribution,
@@ -186,27 +186,27 @@
 <http://cali.priloo.univ-nantes.fr/api/ld/licenses/509627953938751272-9092176396027616413-4061970458552090152> a odrl:Policy ;
     rdfs:label "CC BY-NC-SA" ;
     l4lod:licensingTerms <https://creativecommons.org/licenses/by-nc-sa/3.0/legalcode> ;
-    odrl:duty cc:Attribution,
+    odrl:Duty cc:Attribution,
         cc:Notice,
         cc:ShareAlike ;
     odrl:Permission cc:DerivativeWorks,
         cc:Distribution,
         cc:Reproduction,
         odrl:modify ;
-    odrl:prohibition cc:CommericalUse ;
+    odrl:Prohibition cc:CommericalUse ;
     odrl:target <http://data.linkedct.org/sparql>,
         <http://sparql.msc2010.org/> .
 
 <http://cali.priloo.univ-nantes.fr/api/ld/licenses/5096279539387512726706942505975647712-4061970458552090152> a odrl:Policy ;
     rdfs:label "CC BY-NC" ;
     l4lod:licensingTerms <https://creativecommons.org/licenses/by-nc/3.0/legalcode> ;
-    odrl:duty cc:Attribution,
+    odrl:Duty cc:Attribution,
         cc:Notice ;
     odrl:Permission cc:DerivativeWorks,
         cc:Distribution,
         cc:Reproduction,
         odrl:modify ;
-    odrl:prohibition cc:CommericalUse ;
+    odrl:Prohibition cc:CommericalUse ;
     odrl:target <http://dacura.cs.tcd.ie/sparql>,
         <http://linkeddata.ge.imati.cnr.it:8890/sparql>,
         <http://taxref.mnhn.fr/sparql> .
@@ -230,7 +230,7 @@
 <http://cali.priloo.univ-nantes.fr/api/ld/licenses/31459231771756486426706942505975647712-774852002940443510> a odrl:Policy ;
     rdfs:label "CC BY-NC-ND" ;
     l4lod:licensingTerms <https://creativecommons.org/licenses/by-nc-nd/3.0/legalcode> ;
-    odrl:duty cc:Attribution,
+    odrl:Duty cc:Attribution,
         cc:Notice ;
     odrl:Permission cc:Distribution,
         cc:Reproduction ;
@@ -247,7 +247,7 @@
         "GFDL",
         "ODC-ODbL" ;
     l4lod:licensingTerms <https://opendatacommons.org/licenses/odbl/1.0> ;
-    odrl:duty cc:Attribution,
+    odrl:Duty cc:Attribution,
         cc:Notice,
         cc:ShareAlike ;
     odrl:Permission cc:CommericalUse,
@@ -275,7 +275,7 @@
         <https://github.com/etalab/licence-ouverte/blob/master/open-licence.md>,
         <https://opendatacommons.org/licenses/by/1-0/>,
         <https://www.gnu.org/licenses/gpl-3.0> ;
-    odrl:duty cc:Attribution,
+    odrl:Duty cc:Attribution,
         cc:Notice ;
     odrl:Permission cc:CommericalUse,
         cc:DerivativeWorks,

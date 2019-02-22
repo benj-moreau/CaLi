@@ -87,7 +87,7 @@
 <http://cali.priloo.univ-nantes.fr/api/rep/licenses/-3174312937334791360-2945438668805702054-4454034421496533318> a odrl:Policy ;
     rdfs:label "AFL-3.0" ;
     l4lod:licensingTerms <https://opensource.org/licenses/AFL-3.0> ;
-    odrl:duty cc:Notice,
+    odrl:Duty cc:Notice,
         odrl:attachSource,
         odrl:stateChange ;
     odrl:Permission cc:CommericalUse,
@@ -96,7 +96,7 @@
         odrl:distribute,
         odrl:modify,
         odrl:reproduce ;
-    odrl:prohibition odrl:holdLiable ;
+    odrl:Prohibition odrl:holdLiable ;
     odrl:target <https://github.com/pymc-devs/pymc> .
 
 <http://cali.priloo.univ-nantes.fr/api/rep/licenses/-3174312937334791360133156838395276-4454034421496533318> a odrl:Policy ;
@@ -108,13 +108,13 @@
         odrl:distribute,
         odrl:modify,
         odrl:reproduce ;
-    odrl:prohibition odrl:holdLiable ;
+    odrl:Prohibition odrl:holdLiable ;
     odrl:target <https://github.com/ziadoz/awesome-php> .
 
 <http://cali.priloo.univ-nantes.fr/api/rep/licenses/-31743129373347913604081969958447902551-4454034421496533318> a odrl:Policy ;
     rdfs:label "LGPL-3.0" ;
     l4lod:licensingTerms <https://www.gnu.org/licenses/lgpl-3.0> ;
-    odrl:duty cc:Notice,
+    odrl:Duty cc:Notice,
         cc:ShareAlike,
         odrl:attachSource,
         odrl:stateChange ;
@@ -124,27 +124,27 @@
         odrl:distribute,
         odrl:modify,
         odrl:reproduce ;
-    odrl:prohibition odrl:holdLiable ;
+    odrl:Prohibition odrl:holdLiable ;
     odrl:target <https://github.com/PHPMailer/PHPMailer> .
 
 <http://cali.priloo.univ-nantes.fr/api/rep/licenses/-31743129373347913605520377112819072722-4454034421496533318> a odrl:Policy ;
     rdfs:label "zlib/libng" ;
     l4lod:licensingTerms <http://www.libpng.org/pub/png/src/libpng-LICENSE.txt>,
         <https://www.zlib.net/zlib_license.html> ;
-    odrl:duty odrl:stateChange ;
+    odrl:Duty odrl:stateChange ;
     odrl:Permission cc:CommericalUse,
         cc:DerivativeWorks,
         odrl:derive,
         odrl:distribute,
         odrl:modify,
         odrl:reproduce ;
-    odrl:prohibition odrl:holdLiable ;
+    odrl:Prohibition odrl:holdLiable ;
     odrl:target <https://github.com/portainer/portainer> .
 
 <http://cali.priloo.univ-nantes.fr/api/rep/licenses/-3174312937334791360604211609416504431-4454034421496533318> a odrl:Policy ;
     rdfs:label "AGPLv3" ;
     l4lod:licensingTerms <https://www.gnu.org/licenses/agpl-3.0> ;
-    odrl:duty cc:Notice,
+    odrl:Duty cc:Notice,
         cc:ShareAlike,
         odrl:compositionShareAlike,
         odrl:stateChange ;
@@ -154,7 +154,7 @@
         odrl:distribute,
         odrl:modify,
         odrl:reproduce ;
-    odrl:prohibition odrl:holdLiable ;
+    odrl:Prohibition odrl:holdLiable ;
     odrl:target <https://github.com/tootsuite/mastodon> .
 
 <http://cali.priloo.univ-nantes.fr/api/rep/licenses/-31743129373347913608496928050333750365-4454034421496533318> a odrl:Policy ;
@@ -162,7 +162,7 @@
         "GPL-3.0" ;
     l4lod:licensingTerms <https://www.eclipse.org/legal/epl-v10>,
         <https://www.gnu.org/licenses/gpl-3.0> ;
-    odrl:duty cc:Notice,
+    odrl:Duty cc:Notice,
         cc:ShareAlike,
         odrl:attachSource,
         odrl:compositionShareAlike,
@@ -173,7 +173,7 @@
         odrl:distribute,
         odrl:modify,
         odrl:reproduce ;
-    odrl:prohibition odrl:holdLiable ;
+    odrl:Prohibition odrl:holdLiable ;
     odrl:target <https://github.com/junit-team/junit4> .
 
 <http://cali.priloo.univ-nantes.fr/api/rep/licenses/-31743129373347913605716413288422760099-4454034421496533318> a odrl:Policy ;
@@ -181,7 +181,7 @@
         "OSL-2.0" ;
     l4lod:licensingTerms <http://web.archive.org/web/20041020171434/http://www.rosenlaw.com/osl2.0>,
         <https://www.mozilla.org/en-US/MPL/2.0/> ;
-    odrl:duty cc:Notice,
+    odrl:Duty cc:Notice,
         cc:ShareAlike,
         odrl:attachSource ;
     odrl:Permission cc:CommericalUse,
@@ -190,14 +190,14 @@
         odrl:distribute,
         odrl:modify,
         odrl:reproduce ;
-    odrl:prohibition odrl:holdLiable ;
+    odrl:Prohibition odrl:holdLiable ;
     odrl:target <https://github.com/bailicangdu/vue2-elm>,
         <https://github.com/x64dbg/x64dbg> .
 
 <http://cali.priloo.univ-nantes.fr/api/rep/licenses/-31743129373347913608637588286180985472-4454034421496533318> a odrl:Policy ;
     rdfs:label "Apache v2.0" ;
     l4lod:licensingTerms <https://www.apache.org/licenses/LICENSE-2.0> ;
-    odrl:duty cc:Notice,
+    odrl:Duty cc:Notice,
         odrl:stateChange ;
     odrl:Permission cc:CommericalUse,
         cc:DerivativeWorks,
@@ -205,7 +205,7 @@
         odrl:distribute,
         odrl:modify,
         odrl:reproduce ;
-    odrl:prohibition odrl:holdLiable ;
+    odrl:Prohibition odrl:holdLiable ;
     odrl:target <https://github.com/tensorflow/tensorflow> .
 
 <http://cali.priloo.univ-nantes.fr/api/rep/licenses/-31743129373347913601529177465061342556-4454034421496533318> a odrl:Policy ;
@@ -225,7 +225,7 @@
         odrl:distribute,
         odrl:modify,
         odrl:reproduce ;
-    odrl:prohibition odrl:holdLiable ;
+    odrl:Prohibition odrl:holdLiable ;
     odrl:target <https://github.com/NickeManarin/ScreenToGif>,
         <https://github.com/benjimor/CaLi>,
         <https://github.com/freeCodeCamp/freeCodeCamp> .

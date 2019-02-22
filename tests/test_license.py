@@ -4,7 +4,7 @@ from rdflib import Graph, URIRef
 from cali.license.license import ODRLLicense
 from cali.vocabulary.vocabulary import ODRLVocabulary
 from cali.deontic_lattice import DeonticLattice
-from cali.vocabulary.ontologies.cali_onto import Undefined, Permission, Prohibition, Duty
+from cali.vocabulary.ontologies.cali_onto import Permission
 import cali.exceptions as exceptions
 
 MIT = URIRef('http://cali.priloo.univ-nantes.fr/api/ld/licenses/65927752496731336041529177465061342556133156838395276')
