@@ -76,6 +76,6 @@ class CompatibilityConstraints(object):
         license 1 should be less restritive that license 2
         """
         for constraint in self.functions:
-            if not constraint(self.vocabulary, license):
+            if not constraint(self.vocabulary, license1, license2):
                 return False
         return True
