@@ -38,3 +38,10 @@ class NotACompatibilityConstraint(ValueError):
     def __str__(self):
         """Raise if the constraint function is not a compatibility constraint."""
         return ("Constraint is not a valid license compatibility function")
+
+
+class NotAValidLicense(ValueError):
+
+    def __str__(self):
+        """Raise if the license does not respects license constraints."""
+        return ("License object does not respects License constraints.")

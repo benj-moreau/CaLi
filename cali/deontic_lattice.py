@@ -21,16 +21,16 @@ class DeonticLattice(object):
         Constructs a Dict representing the restrictiveness ordered
         between deontic states.
         """
-        self.moreRestrictiveThan = {}
+        self.restrictiveness = {}
         for deontic_state in rdf_deontic_graph.subjects(predicate=RDF.type, object=DeonticState):
             # restrictiveness relation is reflexive
             more_restrictive = [deontic_state]
             _rec_restrictives(rdf_deontic_graph, deontic_state, more_restrictive)
-            self.moreRestrictiveThan[deontic_state] = more_restrictive
+            self.restrictiveness[deontic_state] = more_restrictive
 
     def is_less_restrictive(self, state1, state2):
         """Return True if state1 is less restrictive than state2. Return False otherwise."""
-        return state2 in self.moreRestrictiveThan[state1]
+        return state2 in self.restrictiveness[state1]
 
 
 def _rec_restrictives(DL, deontic_state, more_restrictive):

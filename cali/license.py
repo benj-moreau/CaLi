@@ -84,7 +84,7 @@ class ODRLLicense(License):
                 deontic_status = rdf_graph.predicates(subject=iri, object=action).next()
                 self.deontic_states.append(deontic_status)
             except StopIteration:
-                if Undefined not in deontic_lattice.moreRestrictiveThan:
+                if Undefined not in deontic_lattice.restrictiveness:
                     raise exceptions.MissingAction()
                 else:
                     self.deontic_states.append(Undefined)
