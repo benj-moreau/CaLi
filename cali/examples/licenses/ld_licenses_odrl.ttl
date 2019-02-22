@@ -234,7 +234,7 @@
         cc:Notice ;
     odrl:Permission cc:Distribution,
         cc:Reproduction ;
-    odrl:prohibition cc:CommericalUse,
+    odrl:Prohibition cc:CommericalUse,
         cc:DerivativeWorks,
         odrl:modify ;
     odrl:target <https://data.opendatasoft.com/explore/api/tpf/coal-production-by-provinces@kapsarc>,

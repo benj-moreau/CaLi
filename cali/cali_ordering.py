@@ -9,7 +9,7 @@ class CaliOrdering(object):
     Contains Licenses partially ordered by compatibility.
     """
 
-    def __init__(self, deontic_lattice, vocabulary, license_constraints, compatibility_constraint):
+    def __init__(self, deontic_lattice, vocabulary, license_constraints, compatibility_constraints):
         """
         Cali ordering Constructor.
 
@@ -26,14 +26,14 @@ class CaliOrdering(object):
         self.deontic_lattice = deontic_lattice
         self.vocabulary = vocabulary
         self.license_constraints = license_constraints
-        self.compatibility_constraint = compatibility_constraint
+        self.compatibility_constraints = compatibility_constraints
 
     def add_license(self, license):
         """Add a license in the cali ordering."""
-        if len(license.deontic_states) == len(self.vocabulary):
+        if len(license.deontic_states) == len(self.vocabulary.actions):
             if self.license_constraints.is_valid(license):
                 if license not in self.compatibility:
-                    if self.is_compatible_with(license, license):
+                    if self._is_compatible_with(license, license):
                         compatible_with = [license]
                     else:
                         compatible_with = []
@@ -89,9 +89,9 @@ class CaliOrdering(object):
 
     def _is_compatible_with(self, license1, license2):
         """Compute if license1 is compatible with license2."""
-        if not self.compatibility_constraint.is_compatible(license1, license1):
+        if not self.compatibility_constraints.is_compatible(license1, license2):
             return False
-        for state1, state2 in zip(license1, license2):
-            if self.deontic_lattice.is_less_restrictive(state1, state2):
+        for state1, state2 in zip(license1.deontic_states, license2.deontic_states):
+            if not self.deontic_lattice.is_less_restrictive(state1, state2):
                 return False
         return True

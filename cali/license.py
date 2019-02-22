@@ -57,6 +57,22 @@ class License(object):
                 actions_to_return.append(action)
         return actions_to_return
 
+    def __hash__(self):
+        """Use the iri to identify licenses."""
+        return hash(self.iri)
+
+    def __eq__(self, other):
+        """Use the iri to compare licenses."""
+        return (self.iri == other.iri)
+
+    def __str__(self):
+        """Use the iri to print licenses."""
+        return self.iri
+
+    def __repr__(self):
+        """Use the iri to represent licenses."""
+        return self.iri
+
 
 class ODRLLicense(License):
     """An ODRL License.

@@ -6,7 +6,7 @@ from cali.vocabulary.vocabulary import ODRLVocabulary
 from cali.constraints import LicenseConstraints, CompatibilityConstraints
 from cali.deontic_lattice import DeonticLattice
 from cali.examples.license_constraints import CommercialUse_Not_Duty, ShareAlike_Not_Prohibition, CommercialUse_Include_Use
-from cali.examples.compatibility_constraints import ShareAlike_Compatibility
+from cali.examples.compatibility_constraints import ShareAlike_Compatibility, DerivativeWorks_Compatibility
 import cali.exceptions as exceptions
 
 MIT = URIRef('http://cali.priloo.univ-nantes.fr/api/ld/licenses/65927752496731336041529177465061342556133156838395276')
@@ -60,7 +60,7 @@ class testCompatibilityConstraint(TestCase):
             compatibility_constraints = CompatibilityConstraints(ODRL, [not_valid_constraint])
         with self.assertRaises(exceptions.NotACompatibilityConstraint):
             compatibility_constraints = CompatibilityConstraints(ODRL, [MIT])
-        compatibility_constraints = CompatibilityConstraints(ODRL, [ShareAlike_Compatibility])
+        compatibility_constraints = CompatibilityConstraints(ODRL, [ShareAlike_Compatibility, DerivativeWorks_Compatibility])
         self.assertTrue(compatibility_constraints.is_compatible(mit, cc_by_sa))
         self.assertTrue(compatibility_constraints.is_compatible(mit, cc_by_nc_sa))
         self.assertFalse(compatibility_constraints.is_compatible(cc_by_sa, cc_by_nc_sa))

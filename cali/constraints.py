@@ -73,7 +73,7 @@ class CompatibilityConstraints(object):
         """
         Return True if license1 and license2 in parameter respect all compatibility constraints.
 
-        license 1 should be less restritive that license 2
+        license 1 should be less restrictive that license 2
         """
         for constraint in self.functions:
             if not constraint(self.vocabulary, license1, license2):
