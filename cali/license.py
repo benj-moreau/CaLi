@@ -1,5 +1,8 @@
+from rdflib import RDF
+
 import cali.exceptions as exceptions
 from cali.vocabulary.ontologies.cali_onto import Undefined
+from cali.vocabulary.vocabulary import ODRL
 
 
 class License(object):
@@ -67,7 +70,7 @@ class ODRLLicense(License):
         """
         ODRL License Constructor.
 
-        accepts three arguments,
+        accepts 4 arguments,
         the odrl 'vocabulary', the 'rdf_graph' (rdflib.Graph) that is
         the rdf file path containing the odrl license and the 'iri'
         (rdflib.URIRef) identifying the license in the rdf file.
@@ -85,3 +88,18 @@ class ODRLLicense(License):
                     raise exceptions.MissingAction()
                 else:
                     self.deontic_states.append(Undefined)
+
+
+def ODRLLicenses(vocabulary, deontic_lattice, rdf_graph):
+    """Instanciate multiple ODRL licenses.
+
+    Accepts 3 arguments:
+    the odrl 'vocabulary', the  deontic lattice and the 'rdf_graph' (rdflib.Graph) that is
+    the rdf file path containing multiple odrl licenses.
+
+    Returns a list of License objects.
+    """
+    licenses = []
+    for iri in rdf_graph.subjects(predicate=RDF.type, object=ODRL['Policy']):
+        licenses.append(ODRLLicense(vocabulary, deontic_lattice, rdf_graph, iri))
+    return licenses

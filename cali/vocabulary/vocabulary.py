@@ -1,4 +1,7 @@
-from rdflib import Graph, URIRef, RDF
+from rdflib import Graph, RDF, Namespace
+
+ODRL = Namespace('http://www.w3.org/ns/odrl/2/')
+CC = Namespace('http://creativecommons.org/ns#')
 
 
 class Vocabulary(object):
@@ -35,7 +38,6 @@ class ODRLVocabulary(Vocabulary):
         all actions of ODRL vocabulary.
         """
         Vocabulary.__init__(self, None)
-        ODRL = Graph().parse(location='cali/vocabulary/ontologies/ODRL22.rdf')
-        ODRL_action_type = URIRef('http://www.w3.org/ns/odrl/2/Action')
-        for action in ODRL.subjects(predicate=RDF.type, object=ODRL_action_type):
+        odrl = Graph().parse(location='cali/vocabulary/ontologies/ODRL22.rdf')
+        for action in odrl.subjects(predicate=RDF.type, object=ODRL['Action']):
             self.actions.append(action)

@@ -1,8 +1,9 @@
 from rdflib import Namespace
 
+from cali.vocabulary.vocabulary import ODRL
+
 # Namespace
 CALI = Namespace('http://cali.priloo.univ-nantes.fr/ontology#')
-ODRL = Namespace('http://www.w3.org/ns/odrl/2/')
 
 # Classes
 DeonticState = CALI['DeonticState']
