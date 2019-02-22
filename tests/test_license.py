@@ -1,7 +1,7 @@
 from unittest import TestCase
 from rdflib import Graph, URIRef
 
-from cali.license.license import ODRLLicense
+from cali.license import ODRLLicense
 from cali.vocabulary.vocabulary import ODRLVocabulary
 from cali.deontic_lattice import DeonticLattice
 from cali.vocabulary.ontologies.cali_onto import Permission
