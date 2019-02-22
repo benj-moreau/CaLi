@@ -1,7 +1,7 @@
 from unittest import TestCase
 from rdflib import Graph, URIRef
 
-from cali.license import ODRLLicense
+from cali.license import ODRLLicense, ODRLLicenses, License
 from cali.vocabulary.vocabulary import ODRLVocabulary, ODRL, CC
 from cali.deontic_lattice import DeonticLattice
 from cali.vocabulary.ontologies.cali_onto import Permission
@@ -32,7 +32,19 @@ class testLicense(TestCase):
         self.assertIsInstance(apache_license, ODRLLicense)
         self.assertTrue(apache_license.deontic_states)
 
+    def test_odrl_licenses(self):
+        """Test if multiple ODRL licenses are well instanciated."""
+        odrl = ODRLVocabulary()
+        DL1 = DeonticLattice(Graph().parse(location='cali/examples/deontic_lattices/DL1.ttl', format='ttl'))
+        ld_licenses_graph = Graph().parse(location='cali/examples/licenses/ld_licenses_odrl.ttl', format='ttl')
+        licenses = ODRLLicenses(vocabulary=odrl, deontic_lattice=DL1, rdf_graph=ld_licenses_graph)
+        self.assertEqual(len(licenses), 7)
+        for license in licenses:
+            self.assertIsInstance(license, License)
+            self.assertIsInstance(license, ODRLLicense)
+
     def test_license_functions(self):
+        """Test licenses methods."""
         odrl = ODRLVocabulary()
         DL1 = DeonticLattice(Graph().parse(location='cali/examples/deontic_lattices/DL1.ttl', format='ttl'))
         ld_licenses_graph = Graph().parse(location='cali/examples/licenses/ld_licenses_odrl.ttl', format='ttl')
