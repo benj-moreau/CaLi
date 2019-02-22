@@ -17,8 +17,8 @@ class testLicense(TestCase):
     def test_odrl_license(self):
         """Test if ODRL licenses are well instanciated."""
         ODRL = ODRLVocabulary()
-        DL1 = DeonticLattice('cali/examples/deontic_lattices/DL1.ttl', 'ttl')
-        DL2 = DeonticLattice('cali/examples/deontic_lattices/DL2.ttl', 'ttl')
+        DL1 = DeonticLattice(Graph().parse(location='cali/examples/deontic_lattices/DL1.ttl', format='ttl'))
+        DL2 = DeonticLattice(Graph().parse(location='cali/examples/deontic_lattices/DL2.ttl', format='ttl'))
         ld_licenses_graph = Graph().parse(location='cali/examples/licenses/ld_licenses_odrl.ttl', format='ttl')
         rep_licenses_graph = Graph().parse(location='cali/examples/licenses/rep_licenses_odrl.ttl', format='ttl')
         with self.assertRaises(exceptions.MissingAction):
@@ -34,7 +34,7 @@ class testLicense(TestCase):
 
     def test_license_functions(self):
         ODRL = ODRLVocabulary()
-        DL1 = DeonticLattice('cali/examples/deontic_lattices/DL1.ttl', 'ttl')
+        DL1 = DeonticLattice(Graph().parse(location='cali/examples/deontic_lattices/DL1.ttl', format='ttl'))
         ld_licenses_graph = Graph().parse(location='cali/examples/licenses/ld_licenses_odrl.ttl', format='ttl')
         rep_licenses_graph = Graph().parse(location='cali/examples/licenses/rep_licenses_odrl.ttl', format='ttl')
         mit_license = ODRLLicense(vocabulary=ODRL, deontic_lattice=DL1, rdf_graph=ld_licenses_graph, iri=MIT)
