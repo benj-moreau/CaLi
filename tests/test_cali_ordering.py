@@ -44,3 +44,6 @@ class testCaliOrdering(TestCase):
         self.assertTrue(cali_ordering.is_compliant(cc_by_sa_license, mit_license))
         self.assertFalse(cali_ordering.is_compliant(mit_license, cc_by_sa_license))
         self.assertFalse(cali_ordering.is_compatible(cc_by_sa_license, cc_by_nc_sa_license))
+        self.assertEqual(len(cali_ordering.all_compatible(mit_license)), 2)
+        self.assertEqual(len(cali_ordering.all_compliant(mit_license)), 6)
+        self.assertEqual(len(cali_ordering.get_rdf_graph()), 21)

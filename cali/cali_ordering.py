@@ -1,3 +1,6 @@
+from rdflib import Graph
+
+from cali.vocabulary.ontologies.cali_onto import compatibleWith
 from cali.exceptions import NotAValidLicense, BadVocabulary
 
 
@@ -86,6 +89,15 @@ class CaliOrdering(object):
         if license not in self.compatibility:
             self.add_license(license)
         return self.compatibility[license]
+
+    def get_rdf_graph(self):
+        """Returns an RDF graph containing license IRI's and compatibility relations."""
+        rdf_graph = Graph()
+        for license, compatible_licenses in self.compatibility.items():
+            for compatible_license in compatible_licenses:
+                rdf_graph.add((license.iri, compatibleWith, compatible_license.iri))
+        return rdf_graph
+
 
     def _is_compatible_with(self, license1, license2):
         """Compute if license1 is compatible with license2."""
