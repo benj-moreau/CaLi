@@ -37,7 +37,7 @@ class CaliOrdering(object):
                         compatible_with = [license]
                     else:
                         compatible_with = []
-                    for license2, compatible_with2 in self.compatibility.iteritems():
+                    for license2, compatible_with2 in self.compatibility.items():
                         if license2 not in compatible_with and self._is_compatible_with(license, license2):
                             compatible_with.append(license2)
                         if license not in compatible_with2 and self._is_compatible_with(license2, license):
@@ -73,7 +73,7 @@ class CaliOrdering(object):
         if license not in self.compatibility:
             self.add_license(license)
         compatible_licenses = []
-        for license2, compatible_with in self.compatibility.iteritems():
+        for license2, compatible_with in self.compatibility.items():
             if license in compatible_with:
                 compatible_licenses.append(license2)
         return compatible_licenses

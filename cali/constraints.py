@@ -1,4 +1,4 @@
-from inspect import getargspec
+import inspect
 
 from cali.exceptions import NotACompatibilityConstraint, NotALicenseConstraint
 
@@ -12,7 +12,7 @@ class LicenseConstraints(object):
     and returns a Boolean.
     """
 
-    def __init__(self, vocabulary, constraint_list=[]):
+    def __init__(self, vocabulary, constraint_list=None):
         """
         License constraint Constructor.
 
@@ -20,11 +20,14 @@ class LicenseConstraints(object):
         Functions takes a license object in parameter and returns a Boolean.
         List is empty by default.
         """
+        if constraint_list is None:
+            constraint_list = []
         self.vocabulary = vocabulary
         self.functions = []
         for constraint in constraint_list:
             if hasattr(constraint, '__call__'):
-                args, _, _, _ = getargspec(constraint)
+
+                args = inspect.getfullargspec(constraint)[0]
                 if len(args) == 2:
                     self.functions.append(constraint)
                 else:
@@ -49,7 +52,7 @@ class CompatibilityConstraints(object):
     and returns a Boolean.
     """
 
-    def __init__(self, vocabulary, constraint_list=[]):
+    def __init__(self, vocabulary, constraint_list=None):
         """
         License constraint Constructor.
 
@@ -57,11 +60,13 @@ class CompatibilityConstraints(object):
         Functions takes 2 licenses object in parameter and returns a Boolean.
         List is empty by default.
         """
+        if constraint_list is None:
+            constraint_list = []
         self.vocabulary = vocabulary
         self.functions = []
         for constraint in constraint_list:
             if hasattr(constraint, '__call__'):
-                args, _, _, _ = getargspec(constraint)
+                args = inspect.getfullargspec(constraint)[0]
                 if len(args) == 3:
                     self.functions.append(constraint)
                 else:

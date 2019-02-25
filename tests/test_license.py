@@ -52,6 +52,6 @@ class testLicense(TestCase):
         mit_license = ODRLLicense(vocabulary=odrl, deontic_lattice=DL1, rdf_graph=ld_licenses_graph, iri=MIT)
         apache_license = ODRLLicense(vocabulary=odrl, deontic_lattice=DL1, rdf_graph=rep_licenses_graph, iri=ApacheV2)
         permissions = [ODRL['modify'], CC['CommericalUse'], CC['Distribution'], CC['DerivativeWorks'], CC['Reproduction']]
-        self.assertItemsEqual(permissions, mit_license.get_action(vocabulary=odrl, state=Permission))
+        self.assertCountEqual(permissions, mit_license.get_action(vocabulary=odrl, state=Permission))
         state = apache_license.get_state(vocabulary=odrl, action=ODRL['derive'])
         self.assertEqual(state, Permission)

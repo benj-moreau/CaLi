@@ -97,7 +97,7 @@ class ODRLLicense(License):
         License.__init__(self, vocabulary, deontic_lattice, rdf_graph, iri)
         for action in vocabulary.actions:
             try:
-                deontic_status = rdf_graph.predicates(subject=iri, object=action).next()
+                deontic_status = next(rdf_graph.predicates(subject=iri, object=action))
                 self.deontic_states.append(deontic_status)
             except StopIteration:
                 if Undefined not in deontic_lattice.restrictiveness:
