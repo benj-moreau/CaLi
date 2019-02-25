@@ -17,10 +17,10 @@ class testLicense(TestCase):
     def test_odrl_license(self):
         """Test if ODRL licenses are well instanciated."""
         odrl = ODRLVocabulary()
-        DL1 = DeonticLattice(Graph().parse(location='cali/examples/deontic_lattices/DL1.ttl', format='ttl'))
-        DL2 = DeonticLattice(Graph().parse(location='cali/examples/deontic_lattices/DL2.ttl', format='ttl'))
-        ld_licenses_graph = Graph().parse(location='cali/examples/licenses/ld_licenses_odrl.ttl', format='ttl')
-        rep_licenses_graph = Graph().parse(location='cali/examples/licenses/rep_licenses_odrl.ttl', format='ttl')
+        DL1 = DeonticLattice(Graph().parse(location='pycali/examples/deontic_lattices/DL1.ttl', format='ttl'))
+        DL2 = DeonticLattice(Graph().parse(location='pycali/examples/deontic_lattices/DL2.ttl', format='ttl'))
+        ld_licenses_graph = Graph().parse(location='pycali/examples/licenses/ld_licenses_odrl.ttl', format='ttl')
+        rep_licenses_graph = Graph().parse(location='pycali/examples/licenses/rep_licenses_odrl.ttl', format='ttl')
         with self.assertRaises(exceptions.MissingAction):
             mit_license = ODRLLicense(vocabulary=odrl, deontic_lattice=DL2, rdf_graph=ld_licenses_graph, iri=MIT)
         with self.assertRaises(exceptions.MissingLicense):
@@ -35,8 +35,8 @@ class testLicense(TestCase):
     def test_odrl_licenses(self):
         """Test if multiple ODRL licenses are well instanciated."""
         odrl = ODRLVocabulary()
-        DL1 = DeonticLattice(Graph().parse(location='cali/examples/deontic_lattices/DL1.ttl', format='ttl'))
-        ld_licenses_graph = Graph().parse(location='cali/examples/licenses/ld_licenses_odrl.ttl', format='ttl')
+        DL1 = DeonticLattice(Graph().parse(location='pycali/examples/deontic_lattices/DL1.ttl', format='ttl'))
+        ld_licenses_graph = Graph().parse(location='pycali/examples/licenses/ld_licenses_odrl.ttl', format='ttl')
         licenses = ODRLLicenses(vocabulary=odrl, deontic_lattice=DL1, rdf_graph=ld_licenses_graph)
         self.assertEqual(len(licenses), 7)
         for license in licenses:
@@ -46,9 +46,9 @@ class testLicense(TestCase):
     def test_license_functions(self):
         """Test licenses methods."""
         odrl = ODRLVocabulary()
-        DL1 = DeonticLattice(Graph().parse(location='cali/examples/deontic_lattices/DL1.ttl', format='ttl'))
-        ld_licenses_graph = Graph().parse(location='cali/examples/licenses/ld_licenses_odrl.ttl', format='ttl')
-        rep_licenses_graph = Graph().parse(location='cali/examples/licenses/rep_licenses_odrl.ttl', format='ttl')
+        DL1 = DeonticLattice(Graph().parse(location='pycali/examples/deontic_lattices/DL1.ttl', format='ttl'))
+        ld_licenses_graph = Graph().parse(location='pycali/examples/licenses/ld_licenses_odrl.ttl', format='ttl')
+        rep_licenses_graph = Graph().parse(location='pycali/examples/licenses/rep_licenses_odrl.ttl', format='ttl')
         mit_license = ODRLLicense(vocabulary=odrl, deontic_lattice=DL1, rdf_graph=ld_licenses_graph, iri=MIT)
         apache_license = ODRLLicense(vocabulary=odrl, deontic_lattice=DL1, rdf_graph=rep_licenses_graph, iri=ApacheV2)
         permissions = [ODRL['modify'], CC['CommericalUse'], CC['Distribution'], CC['DerivativeWorks'], CC['Reproduction']]

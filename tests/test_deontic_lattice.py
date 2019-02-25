@@ -10,8 +10,8 @@ class testDeonticLattice(TestCase):
 
     def test_odrl_vocabulary(self):
         """Test if ODRL vocabulary is well instanciated."""
-        DL1 = DeonticLattice(Graph().parse(location='cali/examples/deontic_lattices/DL1.ttl', format='ttl'))
-        DL2 = DeonticLattice(Graph().parse(location='cali/examples/deontic_lattices/DL2.ttl', format='ttl'))
+        DL1 = DeonticLattice(Graph().parse(location='pycali/examples/deontic_lattices/DL1.ttl', format='ttl'))
+        DL2 = DeonticLattice(Graph().parse(location='pycali/examples/deontic_lattices/DL2.ttl', format='ttl'))
         self.assertCountEqual([Undefined, Permission, Prohibition, Duty], DL1.restrictiveness[Undefined])
         self.assertCountEqual([Permission, Prohibition, Duty], DL1.restrictiveness[Permission])
         self.assertCountEqual([Prohibition, Duty], DL1.restrictiveness[Prohibition])
@@ -22,7 +22,7 @@ class testDeonticLattice(TestCase):
 
     def test_restrictiveness(self):
         """Test restrictiveness function of the deontic lattice."""
-        DL1 = DeonticLattice(Graph().parse(location='cali/examples/deontic_lattices/DL1.ttl', format='ttl'))
+        DL1 = DeonticLattice(Graph().parse(location='pycali/examples/deontic_lattices/DL1.ttl', format='ttl'))
         self.assertTrue(DL1.is_less_restrictive(Undefined, Permission))
         self.assertTrue(DL1.is_less_restrictive(Undefined, Duty))
         self.assertTrue(DL1.is_less_restrictive(Permission, Duty))

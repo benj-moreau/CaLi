@@ -38,6 +38,6 @@ class ODRLVocabulary(Vocabulary):
         all actions of ODRL vocabulary.
         """
         Vocabulary.__init__(self, None)
-        odrl = Graph().parse(location='cali/vocabulary/ontologies/ODRL22.rdf')
+        odrl = Graph().parse(location='pycali/vocabulary/ontologies/ODRL22.rdf')
         for action in odrl.subjects(predicate=RDF.type, object=ODRL['Action']):
             self.actions.append(action)

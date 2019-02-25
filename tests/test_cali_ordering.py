@@ -20,15 +20,15 @@ class testCaliOrdering(TestCase):
 
     def test_cali_ordering(self):
         """Test if Cali Ordering is well instanciated."""
-        CaliOrdering(deontic_lattice=DeonticLattice(Graph().parse(location='cali/examples/deontic_lattices/DL1.ttl', format='ttl')),
+        CaliOrdering(deontic_lattice=DeonticLattice(Graph().parse(location='pycali/examples/deontic_lattices/DL1.ttl', format='ttl')),
                      vocabulary=ODRLVocabulary(),
                      license_constraints=LicenseConstraints([CommercialUse_Not_Duty, ShareAlike_Not_Prohibition, CommercialUse_Include_Use]),
                      compatibility_constraints=CompatibilityConstraints([ShareAlike_Compatibility, DerivativeWorks_Compatibility]))
 
     def test_order(self):
         odrl = ODRLVocabulary()
-        DL1 = DeonticLattice(Graph().parse(location='cali/examples/deontic_lattices/DL1.ttl', format='ttl'))
-        ld_licenses_graph = Graph().parse(location='cali/examples/licenses/ld_licenses_odrl.ttl', format='ttl')
+        DL1 = DeonticLattice(Graph().parse(location='pycali/examples/deontic_lattices/DL1.ttl', format='ttl'))
+        ld_licenses_graph = Graph().parse(location='pycali/examples/licenses/ld_licenses_odrl.ttl', format='ttl')
         cali_ordering = CaliOrdering(deontic_lattice=DL1,
                                      vocabulary=odrl,
                                      license_constraints=LicenseConstraints(odrl, [CommercialUse_Not_Duty, ShareAlike_Not_Prohibition, CommercialUse_Include_Use]),

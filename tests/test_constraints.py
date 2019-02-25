@@ -27,9 +27,9 @@ class testLicenseConstraint(TestCase):
     def test_license_constraint(self):
         """Test if license constraints works as expected."""
         ODRL = ODRLVocabulary()
-        ld_licenses_graph = Graph().parse(location='cali/examples/licenses/ld_licenses_odrl.ttl', format='ttl')
-        non_valid_graph = Graph().parse(location='cali/examples/licenses/non_valid_licenses.ttl', format='ttl')
-        DL1 = DeonticLattice(Graph().parse(location='cali/examples/deontic_lattices/DL1.ttl', format='ttl'))
+        ld_licenses_graph = Graph().parse(location='pycali/examples/licenses/ld_licenses_odrl.ttl', format='ttl')
+        non_valid_graph = Graph().parse(location='pycali/examples/licenses/non_valid_licenses.ttl', format='ttl')
+        DL1 = DeonticLattice(Graph().parse(location='pycali/examples/deontic_lattices/DL1.ttl', format='ttl'))
         mit_license = ODRLLicense(vocabulary=ODRL, deontic_lattice=DL1, rdf_graph=ld_licenses_graph, iri=MIT)
         non_valid1 = ODRLLicense(vocabulary=ODRL, deontic_lattice=DL1, rdf_graph=non_valid_graph, iri=NON_VALID1)
         non_valid2 = ODRLLicense(vocabulary=ODRL, deontic_lattice=DL1, rdf_graph=non_valid_graph, iri=NON_VALID2)
@@ -51,8 +51,8 @@ class testCompatibilityConstraint(TestCase):
     def test_license_constraint(self):
         """Test if compatibility constraints works as expected."""
         ODRL = ODRLVocabulary()
-        ld_licenses_graph = Graph().parse(location='cali/examples/licenses/ld_licenses_odrl.ttl', format='ttl')
-        DL1 = DeonticLattice(Graph().parse(location='cali/examples/deontic_lattices/DL1.ttl', format='ttl'))
+        ld_licenses_graph = Graph().parse(location='pycali/examples/licenses/ld_licenses_odrl.ttl', format='ttl')
+        DL1 = DeonticLattice(Graph().parse(location='pycali/examples/deontic_lattices/DL1.ttl', format='ttl'))
         mit = ODRLLicense(vocabulary=ODRL, deontic_lattice=DL1, rdf_graph=ld_licenses_graph, iri=MIT)
         cc_by_sa = ODRLLicense(vocabulary=ODRL, deontic_lattice=DL1, rdf_graph=ld_licenses_graph, iri=CC_BY_SA)
         cc_by_nc_sa = ODRLLicense(vocabulary=ODRL, deontic_lattice=DL1, rdf_graph=ld_licenses_graph, iri=CC_BY_NC_SA)
