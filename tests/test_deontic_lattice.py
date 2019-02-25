@@ -1,8 +1,8 @@
 from unittest import TestCase
 from rdflib import Graph
 
-from cali.deontic_lattice import DeonticLattice
-from cali.vocabulary.ontologies.cali_onto import Undefined, Permission, Prohibition, Duty
+from pycali.deontic_lattice import DeonticLattice
+from pycali.vocabulary.ontologies.cali_onto import Undefined, Permission, Prohibition, Duty
 
 
 class testDeonticLattice(TestCase):

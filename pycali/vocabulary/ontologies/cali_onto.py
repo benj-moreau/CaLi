@@ -1,6 +1,6 @@
 from rdflib import Namespace
 
-from cali.vocabulary.vocabulary import ODRL
+from pycali.vocabulary.vocabulary import ODRL
 
 # Namespace
 CALI = Namespace('http://cali.priloo.univ-nantes.fr/ontology#')

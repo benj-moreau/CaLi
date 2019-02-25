@@ -1,7 +1,7 @@
 from rdflib import Graph
 
-from cali.vocabulary.ontologies.cali_onto import compatibleWith
-from cali.exceptions import NotAValidLicense, BadVocabulary
+from pycali.vocabulary.ontologies.cali_onto import compatibleWith
+from pycali.exceptions import NotAValidLicense, BadVocabulary
 
 
 class CaliOrdering(object):

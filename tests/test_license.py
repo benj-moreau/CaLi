@@ -1,11 +1,11 @@
 from unittest import TestCase
 from rdflib import Graph, URIRef
 
-from cali.license import ODRLLicense, ODRLLicenses, License
-from cali.vocabulary.vocabulary import ODRLVocabulary, ODRL, CC
-from cali.deontic_lattice import DeonticLattice
-from cali.vocabulary.ontologies.cali_onto import Permission
-import cali.exceptions as exceptions
+from pycali.license import ODRLLicense, ODRLLicenses, License
+from pycali.vocabulary.vocabulary import ODRLVocabulary, ODRL, CC
+from pycali.deontic_lattice import DeonticLattice
+from pycali.vocabulary.ontologies.cali_onto import Permission
+import pycali.exceptions as exceptions
 
 MIT = URIRef('http://cali.priloo.univ-nantes.fr/api/ld/licenses/65927752496731336041529177465061342556133156838395276')
 ApacheV2 = URIRef('http://cali.priloo.univ-nantes.fr/api/rep/licenses/-31743129373347913608637588286180985472-4454034421496533318')

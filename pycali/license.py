@@ -1,8 +1,8 @@
 from rdflib import RDF
 
-import cali.exceptions as exceptions
-from cali.vocabulary.ontologies.cali_onto import Undefined
-from cali.vocabulary.vocabulary import ODRL
+import pycali.exceptions as exceptions
+from pycali.vocabulary.ontologies.cali_onto import Undefined
+from pycali.vocabulary.vocabulary import ODRL
 
 
 class License(object):

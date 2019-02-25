@@ -1,6 +1,6 @@
 import inspect
 
-from cali.exceptions import NotACompatibilityConstraint, NotALicenseConstraint
+from pycali.exceptions import NotACompatibilityConstraint, NotALicenseConstraint
 
 
 class LicenseConstraints(object):

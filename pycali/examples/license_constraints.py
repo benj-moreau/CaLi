@@ -1,5 +1,5 @@
-from cali.vocabulary.ontologies.cali_onto import Duty, Prohibition, Permission
-from cali.vocabulary.vocabulary import ODRL, CC
+from pycali.vocabulary.ontologies.cali_onto import Duty, Prohibition, Permission
+from pycali.vocabulary.vocabulary import ODRL, CC
 
 
 def CommercialUse_Not_Duty(vocabulary, license):

@@ -1,13 +1,13 @@
 from unittest import TestCase
 from rdflib import Graph, URIRef
 
-from cali.cali_ordering import CaliOrdering
-from cali.deontic_lattice import DeonticLattice
-from cali.license import ODRLLicenses, ODRLLicense
-from cali.vocabulary.vocabulary import ODRLVocabulary
-from cali.constraints import LicenseConstraints, CompatibilityConstraints
-from cali.examples.license_constraints import CommercialUse_Not_Duty, ShareAlike_Not_Prohibition, CommercialUse_Include_Use
-from cali.examples.compatibility_constraints import ShareAlike_Compatibility, DerivativeWorks_Compatibility
+from pycali.cali_ordering import CaliOrdering
+from pycali.deontic_lattice import DeonticLattice
+from pycali.license import ODRLLicenses, ODRLLicense
+from pycali.vocabulary.vocabulary import ODRLVocabulary
+from pycali.constraints import LicenseConstraints, CompatibilityConstraints
+from pycali.examples.license_constraints import CommercialUse_Not_Duty, ShareAlike_Not_Prohibition, CommercialUse_Include_Use
+from pycali.examples.compatibility_constraints import ShareAlike_Compatibility, DerivativeWorks_Compatibility
 
 
 MIT = URIRef('http://cali.priloo.univ-nantes.fr/api/ld/licenses/65927752496731336041529177465061342556133156838395276')

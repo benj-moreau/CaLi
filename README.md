@@ -43,7 +43,7 @@ Create your own vocabulary inheriting from Vocabulary object or
 use the implemented ODRL Vocabulary:
 
 ```python
-from cali.vocabulary.vocabulary import ODRLVocabulary
+from pycali.vocabulary.vocabulary import ODRLVocabulary
 
 odrl = ODRLVocabulary()
 # access the list of actions
@@ -59,7 +59,7 @@ A Deontic lattice is instanciated using a deontic lattice in RDF ([rdflib.Graph]
 
 ```python
 from rdflib import Graph
-from cali.deontic_lattice import DeonticLattice
+from pycali.deontic_lattice import DeonticLattice
 
 # Load the deontic lattice in the examples
 DL1 = DeonticLattice(Graph().parse(location='cali/examples/deontic_lattices/DL1.ttl', format='ttl'))
@@ -79,7 +79,7 @@ described using [ODRL Vocabulary](https://www.w3.org/TR/odrl-vocab/):
 
 
 ```python
-from cali.license import ODRLLicenses
+from pycali.license import ODRLLicenses
 
 ld_licenses_graph = Graph().parse(location='cali/examples/licenses/ld_licenses_odrl.ttl',
                                   format='ttl')
@@ -93,10 +93,10 @@ licenses = ODRLLicenses(vocabulary=odrl,
 IRI of the license can be used to retrieve a specific license:
 
 ```python
-from cali.license import ODRLLicense
+from pycali.license import ODRLLicense
 from rdflib import Graph, URIRef
-from cali.vocabulary.vocabulary import ODRL, CC
-from cali.vocabulary.ontologies.cali_onto import Permission
+from pycali.vocabulary.vocabulary import ODRL, CC
+from pycali.vocabulary.ontologies.cali_onto import Permission
 
 MIT = URIRef('http://cali.priloo.univ-nantes.fr/api/ld/licenses/65927752496731336041529177465061342556133156838395276')
 
@@ -124,8 +124,8 @@ A constraints on license is a a python function that takes 2 parameters,
 a vocabulary and a license and returns a boolean:
 
 ```python
-from cali.vocabulary.ontologies.cali_onto import Duty
-from cali.vocabulary.vocabulary import CC
+from pycali.vocabulary.ontologies.cali_onto import Duty
+from pycali.vocabulary.vocabulary import CC
 
 # A License should not obligates the commercial use of a resource
 def CommercialUse_Not_Duty(vocabulary, license):
@@ -138,8 +138,8 @@ A compatibility constraint is a a python function that takes 3 parameters, a voc
 and returns a boolean:
 
 ```python
-from cali.vocabulary.ontologies.cali_onto import Duty
-from cali.vocabulary.vocabulary import CC
+from pycali.vocabulary.ontologies.cali_onto import Duty
+from pycali.vocabulary.vocabulary import CC
 
 # A license that obligates to share alike should not be compatible with another license
 def ShareAlike_Compatibility(vocabulary, license1, license2):
@@ -152,9 +152,9 @@ Constraints are instanciated using LicenseConstraints and CompatibilityConstrain
 They are initiated with a list of constraints (signature of functions (onstraints) are tested during initialization).
 
 ```python
-from cali.constraints import LicenseConstraints, CompatibilityConstraints
-from cali.examples.license_constraints import CommercialUse_Not_Duty, ShareAlike_Not_Prohibition, CommercialUse_Include_Use
-from cali.examples.compatibility_constraints import ShareAlike_Compatibility, DerivativeWorks_Compatibility
+from pycali.constraints import LicenseConstraints, CompatibilityConstraints
+from pycali.examples.license_constraints import CommercialUse_Not_Duty, ShareAlike_Not_Prohibition, CommercialUse_Include_Use
+from pycali.examples.compatibility_constraints import ShareAlike_Compatibility, DerivativeWorks_Compatibility
 
 license_constraints = LicenseConstraints(odrl, [CommercialUse_Not_Duty, ShareAlike_Not_Prohibition, CommercialUse_Include_Use])
 compatibility_constraints = CompatibilityConstraints(ODRL, [ShareAlike_Compatibility, DerivativeWorks_Compatibility])
@@ -173,13 +173,13 @@ Then, every license added in the cali_ordering is ordered among other using comp
 
 ```python
 from rdflib import Graph
-from cali.cali_ordering import CaliOrdering
-from cali.deontic_lattice import DeonticLattice
-from cali.license import ODRLLicenses
-from cali.vocabulary.vocabulary import ODRLVocabulary
-from cali.constraints import LicenseConstraints, CompatibilityConstraints
-from cali.examples.license_constraints import CommercialUse_Not_Duty, ShareAlike_Not_Prohibition, CommercialUse_Include_Use
-from cali.examples.compatibility_constraints import ShareAlike_Compatibility, DerivativeWorks_Compatibility
+from pycali.cali_ordering import CaliOrdering
+from pycali.deontic_lattice import DeonticLattice
+from pycali.license import ODRLLicenses
+from pycali.vocabulary.vocabulary import ODRLVocabulary
+from pycali.constraints import LicenseConstraints, CompatibilityConstraints
+from pycali.examples.license_constraints import CommercialUse_Not_Duty, ShareAlike_Not_Prohibition, CommercialUse_Include_Use
+from pycali.examples.compatibility_constraints import ShareAlike_Compatibility, DerivativeWorks_Compatibility
 
 # instantiate a cali ordering
 cali_ordering = CaliOrdering(deontic_lattice=DeonticLattice(Graph().parse(location='cali/examples/deontic_lattices/DL1.ttl', format='ttl')),
