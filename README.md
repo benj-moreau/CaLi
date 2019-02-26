@@ -62,7 +62,7 @@ from rdflib import Graph
 from pycali.deontic_lattice import DeonticLattice
 
 # Load the deontic lattice in the examples
-DL1 = DeonticLattice(Graph().parse(location='cali/examples/deontic_lattices/DL1.ttl', format='ttl'))
+DL1 = DeonticLattice(Graph().parse(location='.../examples/deontic_lattices/DL1.ttl', format='ttl'))
 ```
 
 ## Load licenses
@@ -81,7 +81,7 @@ described using [ODRL Vocabulary](https://www.w3.org/TR/odrl-vocab/):
 ```python
 from pycali.license import ODRLLicenses
 
-ld_licenses_graph = Graph().parse(location='cali/examples/licenses/ld_licenses_odrl.ttl',
+ld_licenses_graph = Graph().parse(location='.../examples/licenses/ld_licenses_odrl.ttl',
                                   format='ttl')
 licenses = ODRLLicenses(vocabulary=odrl,
                         deontic_lattice=DL1,
@@ -100,7 +100,7 @@ from pycali.vocabulary.ontologies.cali_onto import Permission
 
 MIT = URIRef('http://cali.priloo.univ-nantes.fr/api/ld/licenses/65927752496731336041529177465061342556133156838395276')
 
-ld_licenses_graph = Graph().parse(location='cali/examples/licenses/ld_licenses_odrl.ttl',
+ld_licenses_graph = Graph().parse(location='.../examples/licenses/ld_licenses_odrl.ttl',
                                   format='ttl')
 mit_license = ODRLLicense(vocabulary=odrl,
                       deontic_lattice=DL1,
@@ -182,7 +182,7 @@ from pycali.examples.license_constraints import CommercialUse_Not_Duty, ShareAli
 from pycali.examples.compatibility_constraints import ShareAlike_Compatibility, DerivativeWorks_Compatibility
 
 # instantiate a cali ordering
-cali_ordering = CaliOrdering(deontic_lattice=DeonticLattice(Graph().parse(location='cali/examples/deontic_lattices/DL1.ttl', format='ttl')),
+cali_ordering = CaliOrdering(deontic_lattice=DeonticLattice(Graph().parse(location='.../examples/deontic_lattices/DL1.ttl', format='ttl')),
                              vocabulary=ODRLVocabulary(),
                              license_constraints=LicenseConstraints(odrl, [CommercialUse_Not_Duty, ShareAlike_Not_Prohibition, CommercialUse_Include_Use]),
                              compatibility_constraints=CompatibilityConstraints(odrl, [ShareAlike_Compatibility, DerivativeWorks_Compatibility]))
