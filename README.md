@@ -43,7 +43,7 @@ Create your own vocabulary inheriting from Vocabulary object or
 use the implemented ODRL Vocabulary:
 
 ```python
-from pycali.vocabulary.vocabulary import ODRLVocabulary
+from pycali.vocabulary import ODRLVocabulary
 
 odrl = ODRLVocabulary()
 # access the list of actions
@@ -54,23 +54,25 @@ odrl.actions
 
 A deontic lattice is a lattice defining the restrictiveness order between states of the 
 actions (permitted, obliged, prohibited).
-Repository contains [examples of deontic lattices](https://github.com/benjimor/CaLi/tree/master/cali/examples/deontic_lattices) in RDF.
+Repository contains [examples of deontic lattices](https://github.com/benjimor/CaLi/tree/master/pycali/examples/deontic_lattices) in RDF.
 A Deontic lattice is instanciated using a deontic lattice in RDF ([rdflib.Graph](https://rdflib.readthedocs.io/en/stable/apidocs/rdflib.html?highlight=graph#rdflib.graph.Graph)):
 
 ```python
 from rdflib import Graph
 from pycali.deontic_lattice import DeonticLattice
+from pycali.examples.deontic_lattices.DL1 import dl1_rdf
 
 # Load the deontic lattice in the examples
-DL1 = DeonticLattice(Graph().parse(location='.../examples/deontic_lattices/DL1.ttl', format='ttl'))
+DL1 = DeonticLattice(Graph().parse(data=dl1_rdf, format='ttl'))
 ```
+Note that you can parse your own file using [location parameter](https://rdflib.readthedocs.io/en/stable/apidocs/rdflib.html?highlight=graph#rdflib.graph.Graph.parse)
 
 ## Load licenses
 
 A license i a set of states associated to actions of the vocabulary.
 You can define your own license by creating a class inheriting from License object or 
 use the implemented ODRLLicense object.
-Repository contains [examples of ODRL licenses dataset](https://github.com/benjimor/CaLi/tree/master/cali/examples/licenses).
+Repository contains [examples of ODRL licenses dataset](https://github.com/benjimor/CaLi/tree/master/pycali/examples/licenses).
 
 ### Load a dataset of licenses
 
@@ -79,14 +81,17 @@ described using [ODRL Vocabulary](https://www.w3.org/TR/odrl-vocab/):
 
 
 ```python
+from rdflib import Graph
 from pycali.license import ODRLLicenses
+from pycali.examples.licenses.ld_licenses_odrl import ld_licenses_rdf
 
-ld_licenses_graph = Graph().parse(location='.../examples/licenses/ld_licenses_odrl.ttl',
+ld_licenses_graph = Graph().parse(data=ld_licenses_rdf,
                                   format='ttl')
 licenses = ODRLLicenses(vocabulary=odrl,
                         deontic_lattice=DL1,
                         rdf_graph=ld_licenses_graph)
 ```
+Note that you can parse your own file using [location parameter](https://rdflib.readthedocs.io/en/stable/apidocs/rdflib.html?highlight=graph#rdflib.graph.Graph.parse)
 
 ### Load a specific license
 
@@ -95,12 +100,13 @@ IRI of the license can be used to retrieve a specific license:
 ```python
 from pycali.license import ODRLLicense
 from rdflib import Graph, URIRef
-from pycali.vocabulary.vocabulary import ODRL, CC
-from pycali.vocabulary.ontologies.cali_onto import Permission
+from pycali.vocabulary import ODRL
+from pycali.ontologies.cali_onto import Permission
+from pycali.examples.licenses.ld_licenses_odrl import ld_licenses_rdf
 
 MIT = URIRef('http://cali.priloo.univ-nantes.fr/api/ld/licenses/65927752496731336041529177465061342556133156838395276')
 
-ld_licenses_graph = Graph().parse(location='.../examples/licenses/ld_licenses_odrl.ttl',
+ld_licenses_graph = Graph().parse(data=ld_licenses_rdf,
                                   format='ttl')
 mit_license = ODRLLicense(vocabulary=odrl,
                       deontic_lattice=DL1,
@@ -116,7 +122,7 @@ state = mit_license.get_state(vocabulary=odrl, action=ODRL['derive'])
 
 Constraints on license C<sub>L</sub> defines if a license is valid or not. Compatibility constraints C<sub>→</sub>
 defines if a restrictiveness relation is a compatibility relation or not.
-Repository contains [examples of license and compatibility constraints](https://github.com/benjimor/CaLi/tree/master/cali/examples).
+Repository contains [examples of license and compatibility constraints](https://github.com/benjimor/CaLi/tree/master/pycali/examples).
 
 ### Constraints on licenses
 
@@ -124,8 +130,8 @@ A constraints on license is a a python function that takes 2 parameters,
 a vocabulary and a license and returns a boolean:
 
 ```python
-from pycali.vocabulary.ontologies.cali_onto import Duty
-from pycali.vocabulary.vocabulary import CC
+from pycali.ontologies.cali_onto import Duty
+from pycali.vocabulary import CC
 
 # A License should not obligates the commercial use of a resource
 def CommercialUse_Not_Duty(vocabulary, license):
@@ -138,8 +144,8 @@ A compatibility constraint is a a python function that takes 3 parameters, a voc
 and returns a boolean:
 
 ```python
-from pycali.vocabulary.ontologies.cali_onto import Duty
-from pycali.vocabulary.vocabulary import CC
+from pycali.ontologies.cali_onto import Duty
+from pycali.vocabulary import CC
 
 # A license that obligates to share alike should not be compatible with another license
 def ShareAlike_Compatibility(vocabulary, license1, license2):
@@ -176,13 +182,14 @@ from rdflib import Graph
 from pycali.cali_ordering import CaliOrdering
 from pycali.deontic_lattice import DeonticLattice
 from pycali.license import ODRLLicenses
-from pycali.vocabulary.vocabulary import ODRLVocabulary
+from pycali.vocabulary import ODRLVocabulary
 from pycali.constraints import LicenseConstraints, CompatibilityConstraints
 from pycali.examples.license_constraints import CommercialUse_Not_Duty, ShareAlike_Not_Prohibition, CommercialUse_Include_Use
 from pycali.examples.compatibility_constraints import ShareAlike_Compatibility, DerivativeWorks_Compatibility
+from pycali.examples.deontic_lattices.DL1 import dl1_rdf
 
 # instantiate a cali ordering
-cali_ordering = CaliOrdering(deontic_lattice=DeonticLattice(Graph().parse(location='.../examples/deontic_lattices/DL1.ttl', format='ttl')),
+cali_ordering = CaliOrdering(deontic_lattice=DeonticLattice(Graph().parse(data=dl1_rdf, format='ttl')),
                              vocabulary=ODRLVocabulary(),
                              license_constraints=LicenseConstraints(odrl, [CommercialUse_Not_Duty, ShareAlike_Not_Prohibition, CommercialUse_Include_Use]),
                              compatibility_constraints=CompatibilityConstraints(odrl, [ShareAlike_Compatibility, DerivativeWorks_Compatibility]))
