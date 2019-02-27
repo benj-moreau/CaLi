@@ -1,6 +1,6 @@
 from rdflib import RDF
 
-from pycali.vocabulary.ontologies.cali_onto import DeonticState, lessRestrictiveThan
+from pycali.ontologies.cali_onto import DeonticState, lessRestrictiveThan
 
 
 class DeonticLattice(object):

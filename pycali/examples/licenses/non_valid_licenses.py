@@ -1,4 +1,4 @@
-@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+non_valid_licenses_rdf = """@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
 @prefix cc: <http://creativecommons.org/ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
@@ -37,4 +37,4 @@
         odrl:distribute,
         odrl:modify,
         odrl:reproduce ;
-    odrl:Prohibition odrl:use .
+    odrl:Prohibition odrl:use ."""

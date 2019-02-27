@@ -10,7 +10,7 @@ A python package that defines a partial order over RDF licenses
 CaLi is a lattice-based model for license orderings. This repository contains a python package that implements this model.
 
 
-Our code uses the ODRL CaLi ordering ⟨A, DL, C<sub>L</sub>, C<sub>→</sub>⟩ such that:
+Code uses the ODRL CaLi ordering ⟨A, DL, C<sub>L</sub>, C<sub>→</sub>⟩ such that:
 * A is the set of 72 actions of ODRL (e.g., cc:Distribution, cc:ShareAlike, etc.),
 * DL is the deontic lattice `Undefined <= Permissions <= Duty <= Prohibition` (actions can be either permitted, obliged, prohibited or not specified; in this deontic lattice, the undefined status is the least restrictive and the prohibited one the most restrictive),
 * C<sub>L</sub> and

@@ -1,6 +1,6 @@
 from rdflib import Graph
 
-from pycali.vocabulary.ontologies.cali_onto import compatibleWith
+from pycali.ontologies.cali_onto import compatibleWith
 from pycali.exceptions import NotAValidLicense, BadVocabulary
 
 

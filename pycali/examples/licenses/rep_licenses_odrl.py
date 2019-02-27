@@ -1,4 +1,4 @@
-@prefix l4lod: <http://ns.inria.fr/l4lod/v2/> .
+rep_licenses_rdf = """@prefix l4lod: <http://ns.inria.fr/l4lod/v2/> .
 @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
 @prefix cc: <http://creativecommons.org/ns#> .
 @prefix odrs: <http://schema.theodi.org/odrs#> .
@@ -228,4 +228,4 @@
     odrl:Prohibition odrl:holdLiable ;
     odrl:target <https://github.com/NickeManarin/ScreenToGif>,
         <https://github.com/benjimor/CaLi>,
-        <https://github.com/freeCodeCamp/freeCodeCamp> .
+        <https://github.com/freeCodeCamp/freeCodeCamp> ."""

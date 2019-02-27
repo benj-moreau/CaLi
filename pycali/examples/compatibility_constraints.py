@@ -1,5 +1,5 @@
-from pycali.vocabulary.ontologies.cali_onto import Duty, Prohibition
-from pycali.vocabulary.vocabulary import CC
+from pycali.ontologies.cali_onto import Duty, Prohibition
+from pycali.vocabulary import CC
 
 
 def ShareAlike_Compatibility(vocabulary, license1, license2):

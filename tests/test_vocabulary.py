@@ -2,7 +2,7 @@ from rdflib import URIRef
 
 from unittest import TestCase
 
-from pycali.vocabulary.vocabulary import ODRLVocabulary
+from pycali.vocabulary import ODRLVocabulary
 
 
 class testVocabularies(TestCase):

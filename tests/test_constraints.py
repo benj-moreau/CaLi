@@ -2,11 +2,14 @@ from unittest import TestCase
 from rdflib import Graph, URIRef
 
 from pycali.license import ODRLLicense
-from pycali.vocabulary.vocabulary import ODRLVocabulary
+from pycali.vocabulary import ODRLVocabulary
 from pycali.constraints import LicenseConstraints, CompatibilityConstraints
 from pycali.deontic_lattice import DeonticLattice
 from pycali.examples.license_constraints import CommercialUse_Not_Duty, ShareAlike_Not_Prohibition, CommercialUse_Include_Use
 from pycali.examples.compatibility_constraints import ShareAlike_Compatibility, DerivativeWorks_Compatibility
+from pycali.examples.deontic_lattices.DL1 import dl1_rdf
+from pycali.examples.licenses.ld_licenses_odrl import ld_licenses_rdf
+from pycali.examples.licenses.non_valid_licenses import non_valid_licenses_rdf
 import pycali.exceptions as exceptions
 
 MIT = URIRef('http://cali.priloo.univ-nantes.fr/api/ld/licenses/65927752496731336041529177465061342556133156838395276')
@@ -27,9 +30,9 @@ class testLicenseConstraint(TestCase):
     def test_license_constraint(self):
         """Test if license constraints works as expected."""
         ODRL = ODRLVocabulary()
-        ld_licenses_graph = Graph().parse(location='pycali/examples/licenses/ld_licenses_odrl.ttl', format='ttl')
-        non_valid_graph = Graph().parse(location='pycali/examples/licenses/non_valid_licenses.ttl', format='ttl')
-        DL1 = DeonticLattice(Graph().parse(location='pycali/examples/deontic_lattices/DL1.ttl', format='ttl'))
+        ld_licenses_graph = Graph().parse(data=ld_licenses_rdf, format='ttl')
+        non_valid_graph = Graph().parse(data=non_valid_licenses_rdf, format='ttl')
+        DL1 = DeonticLattice(Graph().parse(data=dl1_rdf, format='ttl'))
         mit_license = ODRLLicense(vocabulary=ODRL, deontic_lattice=DL1, rdf_graph=ld_licenses_graph, iri=MIT)
         non_valid1 = ODRLLicense(vocabulary=ODRL, deontic_lattice=DL1, rdf_graph=non_valid_graph, iri=NON_VALID1)
         non_valid2 = ODRLLicense(vocabulary=ODRL, deontic_lattice=DL1, rdf_graph=non_valid_graph, iri=NON_VALID2)
@@ -51,8 +54,8 @@ class testCompatibilityConstraint(TestCase):
     def test_license_constraint(self):
         """Test if compatibility constraints works as expected."""
         ODRL = ODRLVocabulary()
-        ld_licenses_graph = Graph().parse(location='pycali/examples/licenses/ld_licenses_odrl.ttl', format='ttl')
-        DL1 = DeonticLattice(Graph().parse(location='pycali/examples/deontic_lattices/DL1.ttl', format='ttl'))
+        ld_licenses_graph = Graph().parse(data=ld_licenses_rdf, format='ttl')
+        DL1 = DeonticLattice(Graph().parse(data=dl1_rdf, format='ttl'))
         mit = ODRLLicense(vocabulary=ODRL, deontic_lattice=DL1, rdf_graph=ld_licenses_graph, iri=MIT)
         cc_by_sa = ODRLLicense(vocabulary=ODRL, deontic_lattice=DL1, rdf_graph=ld_licenses_graph, iri=CC_BY_SA)
         cc_by_nc_sa = ODRLLicense(vocabulary=ODRL, deontic_lattice=DL1, rdf_graph=ld_licenses_graph, iri=CC_BY_NC_SA)

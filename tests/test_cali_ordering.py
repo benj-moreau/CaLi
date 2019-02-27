@@ -4,10 +4,12 @@ from rdflib import Graph, URIRef
 from pycali.cali_ordering import CaliOrdering
 from pycali.deontic_lattice import DeonticLattice
 from pycali.license import ODRLLicenses, ODRLLicense
-from pycali.vocabulary.vocabulary import ODRLVocabulary
+from pycali.vocabulary import ODRLVocabulary
 from pycali.constraints import LicenseConstraints, CompatibilityConstraints
 from pycali.examples.license_constraints import CommercialUse_Not_Duty, ShareAlike_Not_Prohibition, CommercialUse_Include_Use
 from pycali.examples.compatibility_constraints import ShareAlike_Compatibility, DerivativeWorks_Compatibility
+from pycali.examples.licenses.ld_licenses_odrl import ld_licenses_rdf
+from pycali.examples.deontic_lattices.DL1 import dl1_rdf
 
 
 MIT = URIRef('http://cali.priloo.univ-nantes.fr/api/ld/licenses/65927752496731336041529177465061342556133156838395276')
@@ -20,15 +22,15 @@ class testCaliOrdering(TestCase):
 
     def test_cali_ordering(self):
         """Test if Cali Ordering is well instanciated."""
-        CaliOrdering(deontic_lattice=DeonticLattice(Graph().parse(location='pycali/examples/deontic_lattices/DL1.ttl', format='ttl')),
+        CaliOrdering(deontic_lattice=DeonticLattice(Graph().parse(data=dl1_rdf, format='ttl')),
                      vocabulary=ODRLVocabulary(),
                      license_constraints=LicenseConstraints([CommercialUse_Not_Duty, ShareAlike_Not_Prohibition, CommercialUse_Include_Use]),
                      compatibility_constraints=CompatibilityConstraints([ShareAlike_Compatibility, DerivativeWorks_Compatibility]))
 
     def test_order(self):
         odrl = ODRLVocabulary()
-        DL1 = DeonticLattice(Graph().parse(location='pycali/examples/deontic_lattices/DL1.ttl', format='ttl'))
-        ld_licenses_graph = Graph().parse(location='pycali/examples/licenses/ld_licenses_odrl.ttl', format='ttl')
+        DL1 = DeonticLattice(Graph().parse(data=dl1_rdf, format='ttl'))
+        ld_licenses_graph = Graph().parse(data=ld_licenses_rdf, format='ttl')
         cali_ordering = CaliOrdering(deontic_lattice=DL1,
                                      vocabulary=odrl,
                                      license_constraints=LicenseConstraints(odrl, [CommercialUse_Not_Duty, ShareAlike_Not_Prohibition, CommercialUse_Include_Use]),

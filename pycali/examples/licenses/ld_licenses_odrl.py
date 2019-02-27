@@ -1,4 +1,4 @@
-@prefix l4lod: <http://ns.inria.fr/l4lod/v2/> .
+ld_licenses_rdf = """@prefix l4lod: <http://ns.inria.fr/l4lod/v2/> .
 @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
 @prefix cc: <http://creativecommons.org/ns#> .
 @prefix odrs: <http://schema.theodi.org/odrs#> .
@@ -292,4 +292,4 @@
         <http://www.influencetracker.com:8890/sparql>,
         <https://data.opendatasoft.com/explore/api/tpf/jcdecaux_bike_data@public>,
         <https://data.opendatasoft.com/explore/api/tpf/places-disponibles-parkings-saemes@saemes>,
-        <https://data.opendatasoft.com/explore/api/tpf/public-bike-pumps@bristol> .
+        <https://data.opendatasoft.com/explore/api/tpf/public-bike-pumps@bristol> ."""
