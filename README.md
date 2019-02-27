@@ -187,13 +187,17 @@ from pycali.constraints import LicenseConstraints, CompatibilityConstraints
 from pycali.examples.license_constraints import CommercialUse_Not_Duty, ShareAlike_Not_Prohibition, CommercialUse_Include_Use
 from pycali.examples.compatibility_constraints import ShareAlike_Compatibility, DerivativeWorks_Compatibility
 from pycali.examples.deontic_lattices.DL1 import dl1_rdf
+from pycali.examples.licenses.ld_licenses_odrl import ld_licenses_rdf
 
 # instantiate a cali ordering
-cali_ordering = CaliOrdering(deontic_lattice=DeonticLattice(Graph().parse(data=dl1_rdf, format='ttl')),
-                             vocabulary=ODRLVocabulary(),
+odrl = ODRLVocabulary()
+DL1 = DeonticLattice(Graph().parse(data=dl1_rdf, format='ttl'))
+cali_ordering = CaliOrdering(deontic_lattice=DL1,
+                             vocabulary=odrl,
                              license_constraints=LicenseConstraints(odrl, [CommercialUse_Not_Duty, ShareAlike_Not_Prohibition, CommercialUse_Include_Use]),
                              compatibility_constraints=CompatibilityConstraints(odrl, [ShareAlike_Compatibility, DerivativeWorks_Compatibility]))
 # add licenses to order
+ld_licenses_graph = Graph().parse(data=ld_licenses_rdf, format='ttl')
 licenses = ODRLLicenses(vocabulary=odrl, deontic_lattice=DL1, rdf_graph=ld_licenses_graph)
 # use cali_ordering.add_license(license) to add one license
 cali_ordering.add_licenses(licenses)
