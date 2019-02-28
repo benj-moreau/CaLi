@@ -171,7 +171,7 @@ license_constraints.is_valid(license)
 compatibility_constraints.is_compatible(license1, license2)
 ```
 
-## Instantiate a CaLi Ordering (Complete Example)
+## Instanciate a CaLi Ordering (Complete Example)
 
 CaLi ordering automatically defines compatibility relations between licenses.
 It takes 4 parameters, the deontic_lattice, the vocabulary, licenses constraints and compatibility constraints.
