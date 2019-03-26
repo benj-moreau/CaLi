@@ -16,7 +16,7 @@ compatibleWith = ODRS['compatibleWith']
 # Resources
 # Status
 Undefined = CALI['Undefined']
-Recommended = CALI['Recommendation']
+Recommendation = CALI['Recommendation']
 Dispensation = CALI['Dispensation']
 Permission = ODRL['Permission']
 Prohibition = ODRL['Prohibition']
