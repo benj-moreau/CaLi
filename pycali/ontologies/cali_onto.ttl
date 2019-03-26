@@ -12,7 +12,7 @@ cali:Status  a  owl:Class , rdfs:Class  ;
 
 cali:lessRestrictiveThan  a  owl:DatatypeProperty , rdf:Property ;
           rdfs:label        "less restrictive than" ;
-          rdfs:comment      "An other thing that is less restrictive" ;
+          rdfs:comment      "Something that is less restrictive" ;
           rdfs:domain       owl:Thing ;
           rdfs:range        owl:Thing .
 
@@ -20,8 +20,8 @@ cali:Undefined  a  cali:Status  ;
           rdfs:label        "Undefined status" ;
           rdfs:comment      "Stating that an action is in an Undefined status" .
 
-cali:Recommended  a  cali:Status  ;
-          rdfs:label        "Recommended status" ;
+cali:Recommendation  a  cali:Status  ;
+          rdfs:label        "Recommendation status" ;
           rdfs:comment      "Stating that an action is recommended" .
 
 cali:Dispensation  a  cali:Status  ;
