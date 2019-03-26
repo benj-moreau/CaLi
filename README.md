@@ -62,7 +62,7 @@ from rdflib import Graph
 from pycali.restrictiveness_lattice_of_status import RestrictivenessLatticeOfStatus
 from pycali.examples.restrictiveness_lattice_of_status.DL1 import dl1_rdf
 
-# Load the deontic lattice in the examples
+# Load the LS in the examples
 DL1 = RestrictivenessLatticeOfStatus(Graph().parse(data=dl1_rdf, format='ttl'))
 ```
 Note that you can parse your own file using [location parameter](https://rdflib.readthedocs.io/en/stable/apidocs/rdflib.html?highlight=graph#rdflib.graph.Graph.parse)
