@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(name='pycali',
-                 version='2.0.3',
+                 version='3.0.0',
                  description='A python package that defines a partial order over RDF licenses',
                  long_description=long_description,
                  long_description_content_type="text/markdown",

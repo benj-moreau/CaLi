@@ -3,8 +3,8 @@ from pycali.vocabulary import CC
 
 
 def ShareAlike_Compatibility(vocabulary, license1, license2):
-    return license1.get_state(vocabulary, CC['ShareAlike']) != Duty
+    return license1.get_status(vocabulary, CC['ShareAlike']) != Duty
 
 
 def DerivativeWorks_Compatibility(vocabulary, license1, license2):
-    return license1.get_state(vocabulary, CC['DerivativeWorks']) != Prohibition
+    return license1.get_status(vocabulary, CC['DerivativeWorks']) != Prohibition

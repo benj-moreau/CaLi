@@ -2,10 +2,11 @@
 @prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix cali:  <http://cali.priloo.univ-nantes.fr/ontology#> .
+@prefix odrl:  <http://www.w3.org/ns/odrl/2/> .
 
-cali:DeonticState  a  owl:Class , rdfs:Class  ;
-          rdfs:label           "A deontic state" ;
-          rdfs:comment         "The deontic state of an action (e.g., Permitted, Obliged, Prohibited, Recommended, etc.)" ;
+cali:Status  a  owl:Class , rdfs:Class  ;
+          rdfs:label           "A status" ;
+          rdfs:comment         "The status of an action (e.g., Permitted, Obliged, Prohibited, Recommended, etc.)" ;
           rdfs:subClassOf   owl:Thing ;
           rdfs:isDefinedBy     cali: .
 
@@ -15,10 +16,20 @@ cali:lessRestrictiveThan  a  owl:DatatypeProperty , rdf:Property ;
           rdfs:domain       owl:Thing ;
           rdfs:range        owl:Thing .
 
-cali:Undefined  a  cali:DeonticState  ;
-          rdfs:label        "Undefined state" ;
-          rdfs:comment      "Stating that an action is in an Undefined state" .
+cali:Undefined  a  cali:Status  ;
+          rdfs:label        "Undefined status" ;
+          rdfs:comment      "Stating that an action is in an Undefined status" .
 
-cali:recommended  a  cali:DeonticState  ;
-          rdfs:label        "Recommended state" ;
+cali:Recommended  a  cali:Status  ;
+          rdfs:label        "Recommended status" ;
           rdfs:comment      "Stating that an action is recommended" .
+
+cali:Dispensation  a  cali:Status  ;
+          rdfs:label        "Dispensation status" ;
+          rdfs:comment      "Stating that an action is not mandatory" .
+
+odrl:Permission  a  cali:Status  .
+
+odrl:Duty  a  cali:Status  .
+
+odrl:Prohibition  a  cali:Status  .

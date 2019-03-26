@@ -3,18 +3,18 @@ from pycali.vocabulary import ODRL, CC
 
 
 def CommercialUse_Not_Duty(vocabulary, license):
-    return license.get_state(vocabulary, CC['CommericalUse']) != Duty
+    return license.get_status(vocabulary, CC['CommericalUse']) != Duty
 
 
 def ShareAlike_Not_Prohibition(vocabulary, license):
-    return license.get_state(vocabulary, CC['ShareAlike']) != Prohibition
+    return license.get_status(vocabulary, CC['ShareAlike']) != Prohibition
 
 
 def CommercialUse_Include_Use(vocabulary, license):
-    if license.get_state(vocabulary, ODRL['use']) == Prohibition:
+    if license.get_status(vocabulary, ODRL['use']) == Prohibition:
         if (
-            license.get_state(vocabulary, CC['CommericalUse']) == Permission or
-            license.get_state(vocabulary, CC['CommericalUse']) == Duty
+            license.get_status(vocabulary, CC['CommericalUse']) == Permission or
+            license.get_status(vocabulary, CC['CommericalUse']) == Duty
            ):
             return False
     return True

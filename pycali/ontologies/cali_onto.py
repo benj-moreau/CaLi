@@ -7,16 +7,17 @@ CALI = Namespace('http://cali.priloo.univ-nantes.fr/ontology#')
 ODRS = Namespace('http://schema.theodi.org/odrs#')
 
 # Classes
-DeonticState = CALI['DeonticState']
+Status = CALI['Status']
 
 # Properties
 lessRestrictiveThan = CALI['lessRestrictiveThan']
 compatibleWith = ODRS['compatibleWith']
 
 # Resources
-# Deontic states
+# Status
 Undefined = CALI['Undefined']
 Recommended = CALI['Recommended']
+Dispensation = CALI['Dispensation']
 Permission = ODRL['Permission']
 Prohibition = ODRL['Prohibition']
 Duty = ODRL['Duty']

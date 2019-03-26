@@ -10,9 +10,9 @@ A python package that defines a partial order over RDF licenses
 CaLi is a lattice-based model for license orderings. This repository contains a python package that implements this model.
 
 
-Code uses the ODRL CaLi ordering ⟨A, DL, C<sub>L</sub>, C<sub>→</sub>⟩ such that:
+Code uses the ODRL CaLi ordering ⟨A, LS, C<sub>L</sub>, C<sub>→</sub>⟩ such that:
 * A is the set of 72 actions of ODRL (e.g., cc:Distribution, cc:ShareAlike, etc.),
-* DL is the deontic lattice `Undefined <= Permissions <= Duty <= Prohibition` (actions can be either permitted, obliged, prohibited or not specified; in this deontic lattice, the undefined status is the least restrictive and the prohibited one the most restrictive),
+* LS is the restrictiveness lattice of status `Undefined <= Permissions <= Duty <= Prohibition` (actions can be either permitted, obliged, prohibited or not specified; in this LS, the undefined status is the least restrictive and the prohibited one the most restrictive),
 * C<sub>L</sub> and
 * C<sub>→</sub> are sets of constraints.
 
@@ -50,26 +50,26 @@ odrl = ODRLVocabulary()
 odrl.actions
 ```
 
-## Load a deontic lattice
+## Load a Restrictiveness lattice of status (LS)
 
-A deontic lattice is a lattice defining the restrictiveness order between states of the 
+LS is a lattice defining the restrictiveness order between statuses of the 
 actions (permitted, obliged, prohibited).
-Repository contains [examples of deontic lattices](https://github.com/benjimor/CaLi/tree/master/pycali/examples/deontic_lattices) in RDF.
-A Deontic lattice is instanciated using a deontic lattice in RDF ([rdflib.Graph](https://rdflib.readthedocs.io/en/stable/apidocs/rdflib.html?highlight=graph#rdflib.graph.Graph)):
+Repository contains [examples of LS](https://github.com/benjimor/CaLi/tree/master/pycali/examples/restrictiveness_lattice_of_status) in RDF.
+A Restrictiveness lattice of status is instantiated using a LS in RDF ([rdflib.Graph](https://rdflib.readthedocs.io/en/stable/apidocs/rdflib.html?highlight=graph#rdflib.graph.Graph)):
 
 ```python
 from rdflib import Graph
-from pycali.deontic_lattice import DeonticLattice
-from pycali.examples.deontic_lattices.DL1 import dl1_rdf
+from pycali.restrictiveness_lattice_of_status import RestrictivenessLatticeOfStatus
+from pycali.examples.restrictiveness_lattice_of_status.DL1 import dl1_rdf
 
 # Load the deontic lattice in the examples
-DL1 = DeonticLattice(Graph().parse(data=dl1_rdf, format='ttl'))
+DL1 = RestrictivenessLatticeOfStatus(Graph().parse(data=dl1_rdf, format='ttl'))
 ```
 Note that you can parse your own file using [location parameter](https://rdflib.readthedocs.io/en/stable/apidocs/rdflib.html?highlight=graph#rdflib.graph.Graph.parse)
 
 ## Load licenses
 
-A license i a set of states associated to actions of the vocabulary.
+A license i a set of statuses associated to actions of the vocabulary.
 You can define your own license by creating a class inheriting from License object or 
 use the implemented ODRLLicense object.
 Repository contains [examples of ODRL licenses dataset](https://github.com/benjimor/CaLi/tree/master/pycali/examples/licenses).
@@ -88,7 +88,7 @@ from pycali.examples.licenses.ld_licenses_odrl import ld_licenses_rdf
 ld_licenses_graph = Graph().parse(data=ld_licenses_rdf,
                                   format='ttl')
 licenses = ODRLLicenses(vocabulary=odrl,
-                        deontic_lattice=DL1,
+                        ls=DL1,
                         rdf_graph=ld_licenses_graph)
 ```
 Note that you can parse your own file using [location parameter](https://rdflib.readthedocs.io/en/stable/apidocs/rdflib.html?highlight=graph#rdflib.graph.Graph.parse)
@@ -109,13 +109,13 @@ MIT = URIRef('http://cali.priloo.univ-nantes.fr/api/ld/licenses/6592775249673133
 ld_licenses_graph = Graph().parse(data=ld_licenses_rdf,
                                   format='ttl')
 mit_license = ODRLLicense(vocabulary=odrl,
-                      deontic_lattice=DL1,
+                      ls=DL1,
                       rdf_graph=ld_licenses_graph,
                       iri=MIT)
 # Returns a list of actions in the specified state
-actions = mit_license.get_action(vocabulary=odrl, state=Permission)
+actions = mit_license.get_action(vocabulary=odrl, status=Permission)
 # Returns the state of an action
-state = mit_license.get_state(vocabulary=odrl, action=ODRL['derive'])
+state = mit_license.get_status(vocabulary=odrl, action=ODRL['derive'])
 ```
 
 ## Define constraints
@@ -135,7 +135,7 @@ from pycali.vocabulary import CC
 
 # A License should not obligates the commercial use of a resource
 def CommercialUse_Not_Duty(vocabulary, license):
-    return license.get_state(vocabulary, CC['CommericalUse']) != Duty
+    return license.get_status(vocabulary, CC['CommericalUse']) != Duty
 ```
 
 ### Compatibility constraints
@@ -149,13 +149,13 @@ from pycali.vocabulary import CC
 
 # A license that obligates to share alike should not be compatible with another license
 def ShareAlike_Compatibility(vocabulary, license1, license2):
-    return license1.get_state(vocabulary, CC['ShareAlike']) != Duty
+    return license1.get_status(vocabulary, CC['ShareAlike']) != Duty
 ```
 
-### Instanciate constraints
+### Instantiate constraints
 
-Constraints are instanciated using LicenseConstraints and CompatibilityConstraints objects.
-They are initiated with a list of constraints (signature of functions (onstraints) are tested during initialization).
+Constraints are instantiated using LicenseConstraints and CompatibilityConstraints objects.
+They are initiated with a list of constraints (signature of functions (constraints) are tested during initialization).
 
 ```python
 from pycali.constraints import LicenseConstraints, CompatibilityConstraints
@@ -174,31 +174,31 @@ compatibility_constraints.is_compatible(license1, license2)
 ## Instanciate a CaLi Ordering (Complete Example)
 
 CaLi ordering automatically defines compatibility relations between licenses.
-It takes 4 parameters, the deontic_lattice, the vocabulary, licenses constraints and compatibility constraints.
+It takes 4 parameters, the restrictiveness lattice of status (LS), the vocabulary, licenses constraints and compatibility constraints.
 Then, every license added in the cali_ordering is ordered among other using compatibility relation.
 
 ```python
 from rdflib import Graph
 from pycali.cali_ordering import CaliOrdering
-from pycali.deontic_lattice import DeonticLattice
+from pycali.restrictiveness_lattice_of_status import RestrictivenessLatticeOfStatus
 from pycali.license import ODRLLicenses
 from pycali.vocabulary import ODRLVocabulary
 from pycali.constraints import LicenseConstraints, CompatibilityConstraints
 from pycali.examples.license_constraints import CommercialUse_Not_Duty, ShareAlike_Not_Prohibition, CommercialUse_Include_Use
 from pycali.examples.compatibility_constraints import ShareAlike_Compatibility, DerivativeWorks_Compatibility
-from pycali.examples.deontic_lattices.DL1 import dl1_rdf
+from pycali.examples.restrictiveness_lattice_of_status.DL1 import dl1_rdf
 from pycali.examples.licenses.ld_licenses_odrl import ld_licenses_rdf
 
 # instantiate a cali ordering
 odrl = ODRLVocabulary()
-DL1 = DeonticLattice(Graph().parse(data=dl1_rdf, format='ttl'))
-cali_ordering = CaliOrdering(deontic_lattice=DL1,
+DL1 = RestrictivenessLatticeOfStatus(Graph().parse(data=dl1_rdf, format='ttl'))
+cali_ordering = CaliOrdering(ls=DL1,
                              vocabulary=odrl,
                              license_constraints=LicenseConstraints(odrl, [CommercialUse_Not_Duty, ShareAlike_Not_Prohibition, CommercialUse_Include_Use]),
                              compatibility_constraints=CompatibilityConstraints(odrl, [ShareAlike_Compatibility, DerivativeWorks_Compatibility]))
 # add licenses to order
 ld_licenses_graph = Graph().parse(data=ld_licenses_rdf, format='ttl')
-licenses = ODRLLicenses(vocabulary=odrl, deontic_lattice=DL1, rdf_graph=ld_licenses_graph)
+licenses = ODRLLicenses(vocabulary=odrl, ls=DL1, rdf_graph=ld_licenses_graph)
 # use cali_ordering.add_license(license) to add one license
 cali_ordering.add_licenses(licenses)
 ```

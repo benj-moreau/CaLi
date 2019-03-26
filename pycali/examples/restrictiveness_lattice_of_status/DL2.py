@@ -4,20 +4,20 @@ dl2_rdf = """@prefix owl:   <http://www.w3.org/2002/07/owl#> .
 @prefix odrl:  <http://www.w3.org/ns/odrl/2/> .
 @prefix cali:  <http://cali.priloo.univ-nantes.fr/ontology#> .
 
-odrl:Permission  a  cali:DeonticState  ;
+odrl:Permission  a  cali:Status  ;
           rdfs:label        "Permission" ;
           rdfs:comment      "The ability to perform an Action over an Asset." ;
           cali:lessRestrictiveThan      odrl:Permission,
                       odrl:Prohibition,
                       odrl:Duty .
 
-odrl:Prohibition  a  cali:DeonticState  ;
+odrl:Prohibition  a  cali:Status  ;
           rdfs:label        "Prohibition" ;
           rdfs:comment      "The inability to perform an Action over an Asset." ;
           cali:lessRestrictiveThan      odrl:Prohibition,
                       odrl:Duty .
 
-odrl:Duty  a  cali:DeonticState  ;
+odrl:Duty  a  cali:Status  ;
           rdfs:label        "Duty" ;
           rdfs:comment      "The obligation to perform an Action" ;
           cali:lessRestrictiveThan      odrl:Duty ."""

@@ -4,10 +4,10 @@ from rdflib import Graph, URIRef
 from pycali.license import ODRLLicense
 from pycali.vocabulary import ODRLVocabulary
 from pycali.constraints import LicenseConstraints, CompatibilityConstraints
-from pycali.deontic_lattice import DeonticLattice
+from pycali.restrictiveness_lattice_of_status import RestrictivenessLatticeOfStatus
 from pycali.examples.license_constraints import CommercialUse_Not_Duty, ShareAlike_Not_Prohibition, CommercialUse_Include_Use
 from pycali.examples.compatibility_constraints import ShareAlike_Compatibility, DerivativeWorks_Compatibility
-from pycali.examples.deontic_lattices.DL1 import dl1_rdf
+from pycali.examples.restrictiveness_lattice_of_status.DL1 import dl1_rdf
 from pycali.examples.licenses.ld_licenses_odrl import ld_licenses_rdf
 from pycali.examples.licenses.non_valid_licenses import non_valid_licenses_rdf
 import pycali.exceptions as exceptions
@@ -32,11 +32,11 @@ class testLicenseConstraint(TestCase):
         ODRL = ODRLVocabulary()
         ld_licenses_graph = Graph().parse(data=ld_licenses_rdf, format='ttl')
         non_valid_graph = Graph().parse(data=non_valid_licenses_rdf, format='ttl')
-        DL1 = DeonticLattice(Graph().parse(data=dl1_rdf, format='ttl'))
-        mit_license = ODRLLicense(vocabulary=ODRL, deontic_lattice=DL1, rdf_graph=ld_licenses_graph, iri=MIT)
-        non_valid1 = ODRLLicense(vocabulary=ODRL, deontic_lattice=DL1, rdf_graph=non_valid_graph, iri=NON_VALID1)
-        non_valid2 = ODRLLicense(vocabulary=ODRL, deontic_lattice=DL1, rdf_graph=non_valid_graph, iri=NON_VALID2)
-        non_valid3 = ODRLLicense(vocabulary=ODRL, deontic_lattice=DL1, rdf_graph=non_valid_graph, iri=NON_VALID3)
+        DL1 = RestrictivenessLatticeOfStatus(Graph().parse(data=dl1_rdf, format='ttl'))
+        mit_license = ODRLLicense(vocabulary=ODRL, ls=DL1, rdf_graph=ld_licenses_graph, iri=MIT)
+        non_valid1 = ODRLLicense(vocabulary=ODRL, ls=DL1, rdf_graph=non_valid_graph, iri=NON_VALID1)
+        non_valid2 = ODRLLicense(vocabulary=ODRL, ls=DL1, rdf_graph=non_valid_graph, iri=NON_VALID2)
+        non_valid3 = ODRLLicense(vocabulary=ODRL, ls=DL1, rdf_graph=non_valid_graph, iri=NON_VALID3)
         with self.assertRaises(exceptions.NotALicenseConstraint):
             license_constraints = LicenseConstraints(ODRL, [not_valid_constraint])
         with self.assertRaises(exceptions.NotALicenseConstraint):
@@ -55,10 +55,10 @@ class testCompatibilityConstraint(TestCase):
         """Test if compatibility constraints works as expected."""
         ODRL = ODRLVocabulary()
         ld_licenses_graph = Graph().parse(data=ld_licenses_rdf, format='ttl')
-        DL1 = DeonticLattice(Graph().parse(data=dl1_rdf, format='ttl'))
-        mit = ODRLLicense(vocabulary=ODRL, deontic_lattice=DL1, rdf_graph=ld_licenses_graph, iri=MIT)
-        cc_by_sa = ODRLLicense(vocabulary=ODRL, deontic_lattice=DL1, rdf_graph=ld_licenses_graph, iri=CC_BY_SA)
-        cc_by_nc_sa = ODRLLicense(vocabulary=ODRL, deontic_lattice=DL1, rdf_graph=ld_licenses_graph, iri=CC_BY_NC_SA)
+        DL1 = RestrictivenessLatticeOfStatus(Graph().parse(data=dl1_rdf, format='ttl'))
+        mit = ODRLLicense(vocabulary=ODRL, ls=DL1, rdf_graph=ld_licenses_graph, iri=MIT)
+        cc_by_sa = ODRLLicense(vocabulary=ODRL, ls=DL1, rdf_graph=ld_licenses_graph, iri=CC_BY_SA)
+        cc_by_nc_sa = ODRLLicense(vocabulary=ODRL, ls=DL1, rdf_graph=ld_licenses_graph, iri=CC_BY_NC_SA)
         with self.assertRaises(exceptions.NotACompatibilityConstraint):
             compatibility_constraints = CompatibilityConstraints(ODRL, [not_valid_constraint])
         with self.assertRaises(exceptions.NotACompatibilityConstraint):

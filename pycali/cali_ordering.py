@@ -12,28 +12,28 @@ class CaliOrdering(object):
     Contains Licenses partially ordered by compatibility.
     """
 
-    def __init__(self, deontic_lattice, vocabulary, license_constraints, compatibility_constraints):
+    def __init__(self, ls, vocabulary, license_constraints, compatibility_constraints):
         """
         Cali ordering Constructor.
 
         Init function accepts 4 arguments:
-        - A deontic_lattice object that defines restrictiveness order
+        - A restrictiveness lattice of status object that defines restrictiveness order
         - A vocabulary object that defines actions of licenses
         - LicenseConstraints object that defines if a license is valid or not
-        - CompatibilityConstraints object that defines if a restrctiveness relation is also a compatibility relation
+        - CompatibilityConstraints object that defines if a restrictiveness relation is also a compatibility relation
 
         Constructs a Dict representing the compatibility order
         between licenses.
         """
         self.compatibility = {}
-        self.deontic_lattice = deontic_lattice
+        self.ls = ls
         self.vocabulary = vocabulary
         self.license_constraints = license_constraints
         self.compatibility_constraints = compatibility_constraints
 
     def add_license(self, license):
         """Add a license in the cali ordering."""
-        if len(license.deontic_states) == len(self.vocabulary.actions):
+        if len(license.statuses) == len(self.vocabulary.actions):
             if self.license_constraints.is_valid(license):
                 if license not in self.compatibility:
                     if self._is_compatible_with(license, license):
@@ -98,12 +98,11 @@ class CaliOrdering(object):
                 rdf_graph.add((license.iri, compatibleWith, compatible_license.iri))
         return rdf_graph
 
-
     def _is_compatible_with(self, license1, license2):
         """Compute if license1 is compatible with license2."""
         if not self.compatibility_constraints.is_compatible(license1, license2):
             return False
-        for state1, state2 in zip(license1.deontic_states, license2.deontic_states):
-            if not self.deontic_lattice.is_less_restrictive(state1, state2):
+        for status1, status2 in zip(license1.statuses, license2.statuses):
+            if not self.ls.is_less_restrictive(status1, status2):
                 return False
         return True
